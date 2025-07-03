@@ -1,21 +1,8 @@
-#{ config, pkgs, ... }:
 { pkgs, ... }:
 {
-  home = {
-    username = "lyzh";
-    homeDirectory = "/home/lyzh";
-    stateVersion = "25.05";
-  };
+  home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
-    rsync
-    ripgrep
-    fd
-    fzf
-    bat
-    zsh
-    fish
-    
     neofetch
     htop
     btop
@@ -25,12 +12,10 @@
 
     wget
     curl
-      
+
     direnv
 
-    git
     zsh
-    fish
 
     gnumake
     cmake
@@ -52,17 +37,11 @@
     haskell-language-server
 
     vscode
-    
+
     #tailscale
     #clash-meta
     #v2raya
   ];
-
-  programs.git = {
-    enable = true;
-    userName = "imlyzh";
-    userEmail = "enterindex@gmail.com";
-  };
 
   #programs.rustup = {
   #  enable = true;

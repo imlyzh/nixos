@@ -2,18 +2,13 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, 
-... }:
-
-
-let home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz;
-in
+{ config, lib, pkgs, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-
-      (import "${home-manager}/nixos")
+      <home-manager/nix>
+      inputs.home-manager.nixosModules.home-manager
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -27,9 +22,9 @@ in
   nix = {
     settings = {
       substituters = [
-        "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
         "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
         "https://mirrors.ustc.edu.cn/nix-channels/store"
+        "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
         "https://cache.nixos.org/"
       ];
     };
@@ -72,7 +67,7 @@ in
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
-  
+
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -102,7 +97,7 @@ in
       extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
       uid = 1001;
       hashedPassword = "$6$3EPkfBlo6DmngTcl$fxPkkvpjjSyAniQoZ2roAGCvgKXG51e824SDEr3FtMXX.E4h3qIxsNMLI6d0KZeAvLQrtgUkbu4m1dLeYJ11H.";
-      packages = with pkgs; []; 
+      packages = with pkgs; [];
     };
 
   # programs.firefox.enable = true;
@@ -118,7 +113,7 @@ in
 
       wget
       curl
-      
+
       #direnv
 
       git
@@ -149,7 +144,7 @@ in
     stdenv.cc.cc.lib
     # any other system-level libraries vscode-server might need
   ];
-  
+
   #programs.vscode.server.enable = true;
 
   #environment.sessionVariables = {
