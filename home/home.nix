@@ -6,55 +6,32 @@
     stateVersion = "25.05";
   };
 
+  nixpkgs.config.allowUnfree = true;
+
   home.packages = with pkgs; [
     rsync
+    zsh
+    fish
+    wget
+    curl
+    htop
+    btop
+    git
+    neovim
+    emacs
     ripgrep
     fd
     fzf
     bat
-    zsh
-    fish
-
+    tailscale
     neofetch
-    htop
-    btop
 
-    neovim
-    emacs
-
-    wget
-    curl
-
-    direnv
-
-    git
-    zsh
-    fish
-
-    gnumake
-    cmake
-    ninja
-
-    # jdk17
-    # sbt
-    # mill
-    # verilator
-    # gtkwave
-
-    # llvmPackages_latest.llvm
-    # llvmPackages_latest.bintools
-
-    # rustup
-
-    # ghc
-    # cabal-install
-    # haskell-language-server
-
+    verilator
+    gtkwave
     # vscode
 
-    #tailscale
-    #clash-meta
-    #v2raya
+    # clash-meta
+    # v2raya
   ];
 
   programs.git = {
@@ -68,12 +45,12 @@
   #  toolchains = "stable";
   #};
 
-  home.sessionVariables = {
-    http_proxy = "";
-    https_proxy = "";
-    all_proxy = "";
-    NO_PROXY = "localhost,127.0.0.1, ::1";
-  };
+  # home.sessionVariables = {
+  #   http_proxy = "";
+  #   https_proxy = "";
+  #   all_proxy = "";
+  #   NO_PROXY = "localhost,127.0.0.1, ::1";
+  # };
 
   programs.home-manager.enable = true;
 }

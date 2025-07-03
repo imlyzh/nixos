@@ -36,11 +36,11 @@
           modules = [ ./home/home.nix ];
         };
 
-        # "lyzh@lyzhdeMac" = home-manager.lib.homeManagerConfiguration {
-        #   pkgs = nixpkgs.legacyPackages."aarch64-darwin";
-        #   extraSpecialArgs = { inherit inputs; };
-        #   modules = [ ./home/darwin.nix ];
-        # };
+        "lyzhdeMac" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+          extraSpecialArgs = { inherit inputs; };
+          modules = [ ./home/home.nix ];
+        };
       };
 
       # (可选) 如果完整地用 Nix 管理 macOS 系统
