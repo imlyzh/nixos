@@ -6,9 +6,8 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      "./hardware-configuration.nix"
       <home-manager/nix>
-      inputs.home-manager.nixosModules.home-manager
     ];
 
   nixpkgs.config.allowUnfree = true;

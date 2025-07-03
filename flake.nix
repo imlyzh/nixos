@@ -21,7 +21,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      nixosConfigurations = {
+      lyzhNixOSLaptopConfigurations = {
         "lyzh-nixos" = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
