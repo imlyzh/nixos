@@ -2,7 +2,7 @@
 {
   home = {
     username = "lyzh";
-    homeDirectory = "/home/lyzh";
+    homeDirectory = if pkgs.stdenv.isDarwin then "/Users/lyzh" else "/home/lyzh";
     stateVersion = "25.05";
   };
 
@@ -41,10 +41,10 @@
     # verilator
     # gtkwave
 
-    llvmPackages_latest.llvm
-    llvmPackages_latest.bintools
+    # llvmPackages_latest.llvm
+    # llvmPackages_latest.bintools
 
-    rustup
+    # rustup
 
     # ghc
     # cabal-install
