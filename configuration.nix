@@ -113,21 +113,23 @@ in
       btrfs-progs
 
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      neovim
-      emacs
+      #neovim
+      #emacs
 
       wget
       curl
       
-      direnv
+      #direnv
 
       git
-      zsh
-      fish
+      #zsh
+      #fish
 
-      gcc
+      #gcc
       cmake
       ninja
+
+      code-server
 
       tailscale
       #clash-meta
@@ -141,6 +143,14 @@ in
     CC = "clang";
     CXX = "clang++";
   };
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    # any other system-level libraries vscode-server might need
+  ];
+  
+  #programs.vscode.server.enable = true;
 
   #environment.sessionVariables = {
   #  # 代理服务器地址
@@ -167,6 +177,12 @@ in
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+
+  #services.nfs.server = {
+  #  enable = true;
+  #  openFirewall = true;
+  #}
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

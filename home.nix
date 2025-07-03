@@ -8,22 +8,13 @@
   };
 
   home.packages = with pkgs; [
+    rsync
     ripgrep
     fd
     
     neofetch
     htop
     btop
-
-    llvmPackages_latest.llvm
-    llvmPackages_latest.bintools
-
-    rustup
-
-    ghc
-    cabal-install
-    haskell-language-server
-    
 
     neovim
     emacs
@@ -37,6 +28,7 @@
     zsh
     fish
 
+    gnumake
     cmake
     ninja
 
@@ -45,6 +37,15 @@
     mill
     verilator
     gtkwave
+
+    llvmPackages_latest.llvm
+    llvmPackages_latest.bintools
+
+    rustup
+
+    ghc
+    cabal-install
+    haskell-language-server
 
     vscode
     
