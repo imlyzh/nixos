@@ -28,12 +28,14 @@
     bat
     tailscale
     neofetch
-
+    dust
     typst
 
     verilator
     gtkwave
     # vscode
+
+    openjdk
 
     # clash-meta
     # v2raya
