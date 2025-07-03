@@ -31,6 +31,8 @@
     dust
     typst
 
+    devenv
+
     verilator
     gtkwave
     # vscode
