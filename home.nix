@@ -11,6 +11,10 @@
     rsync
     ripgrep
     fd
+    fzf
+    bat
+    zsh
+    fish
     
     neofetch
     htop
