@@ -2,17 +2,17 @@
   description = "Lyzh's NixOS and Home Manager configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-darwin = {
-      url = "github:LnL7/nix-darwin";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nix-darwin = {
+    #   url = "github:LnL7/nix-darwin";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs:
@@ -21,29 +21,26 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      lyzhNixOSLaptopConfigurations = {
+      nixosConfigurations = {
         "lyzh-nixos" = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = { inherit inputs; };
-          modules = [ ./configuration.nix ];
+          modules = [ ./machines/configuration.nix ];
         };
       };
 
       homeConfigurations = {
-        "lyzh@lyzh-nix-machine" = home-manager.lib.homeManagerConfiguration {
+        "lyzh-nix-machine" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
           modules = [ ./home/home.nix ];
         };
 
-        "lyzh@lyzhdeMac" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages."aarch64-darwin";
-          extraSpecialArgs = { inherit inputs; };
-          modules = [
-            ./home/home.nix
-            { _module.args.isDarwin = true; }
-          ];
-        };
+        # "lyzh@lyzhdeMac" = home-manager.lib.homeManagerConfiguration {
+        #   pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+        #   extraSpecialArgs = { inherit inputs; };
+        #   modules = [ ./home/darwin.nix ];
+        # };
       };
 
       # (可选) 如果完整地用 Nix 管理 macOS 系统

@@ -2,12 +2,12 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs,... }:
 {
   imports =
     [ # Include the results of the hardware scan.
-      "./hardware-configuration.nix"
-      <home-manager/nix>
+      ./hardware-configuration.nix
+      inputs.home-manager.nixosModules.home-manager
     ];
 
   nixpkgs.config.allowUnfree = true;
@@ -15,15 +15,15 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.lyzh = import ./home.nix { inherit pkgs; };
+    users.lyzh = { imports = [../home/home.nix]; };
   };
 
   nix = {
     settings = {
       substituters = [
-        "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-        "https://mirrors.ustc.edu.cn/nix-channels/store"
-        "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
+        # "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+        # "https://mirrors.ustc.edu.cn/nix-channels/store"
+        # "https://mirrors.sjtug.sjtu.edu.cn/nix-channels/store"
         "https://cache.nixos.org/"
       ];
     };
