@@ -16,6 +16,8 @@
     curl
     htop
     btop
+    tlrc
+    tree
     git
     neovim
     emacs
@@ -26,6 +28,8 @@
     bat
     tailscale
     neofetch
+
+    typst
 
     verilator
     gtkwave
