@@ -46,7 +46,7 @@
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
 
   # Set your time zone.
-  time.timeZone = "Asia/Shanghal";
+  time.timeZone = "Asia/Shanghai";
 
   # Configure network proxy if necessary
   networking.proxy.default = "http://localhost:20171";
