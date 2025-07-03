@@ -31,6 +31,7 @@
     dust
     typst
 
+    direnv
     devenv
 
     verilator
