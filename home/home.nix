@@ -50,6 +50,10 @@
     userEmail = "enterindex@gmail.com";
   };
 
+  programs.direnv = {
+    enable = true;
+  };
+
   #programs.rustup = {
   #  enable = true;
   #  toolchains = "stable";
