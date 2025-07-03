@@ -32,13 +32,15 @@
     typst
 
     direnv
-    devenv
+    # devenv
 
     verilator
     gtkwave
     # vscode
 
     openjdk
+
+    rustup
 
     # clash-meta
     # v2raya
