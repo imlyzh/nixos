@@ -19,6 +19,7 @@
     git
     neovim
     emacs
+    nushell
     ripgrep
     fd
     fzf
