@@ -172,9 +172,6 @@
 
   services.samba = {
     enable = true;
-    # 如果你的网络有 WINS 服务器，可以在这里设置
-    # workgroup = "WORKGROUP";
-    serverName = "nixos-server";
     settings = {
       public = {
         browseable = "yes";
