@@ -33,7 +33,7 @@
       QuitMenuItem = true;
       ShowMountedServersOnDesktop = true;
       ShowPathbar = true;
-      ShowStatusBar = true;
+      ShowStatusBar = false;
       _FXSortFoldersFirst = true;
       FXEnableExtensionChangeWarning = false;
     };
