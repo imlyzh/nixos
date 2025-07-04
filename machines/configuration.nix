@@ -186,7 +186,7 @@
 
   services.nfs.server = {
     enable = true;
-    exports = "/home/lyzh/Music";
+    exports = "/home/lyzh/Music *.*.*.*(rw,fsid=0,no_subtree_check)";
     hostName = "lyzh-nixos-server";
   };
 
