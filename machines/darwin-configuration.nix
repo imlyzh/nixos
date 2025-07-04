@@ -1,6 +1,7 @@
 { config, pkgs, inputs, ... }:
 {
   system.stateVersion = 6;
+  system.primaryUser = "lyzh";
 
   users.users.lyzh = {
     name = "lyzh";
