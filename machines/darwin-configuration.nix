@@ -61,6 +61,8 @@
     screencapture = {
       target = "clipboard"; # "file" "preview"
     };
+  };
+  system = {
     keyboard = {
       enableKeyMapping = true;
       remapCapsLockToEscape = true;
