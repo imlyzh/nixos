@@ -64,6 +64,10 @@
     transmission-gtk
   ];
 
+  programs.nix-index.enable = true;
+  programs.nix-index.enableGUISupport = true;
+  system.build.applicationsDir.enable = true;
+
   programs.git = {
     enable = true;
     userName = "imlyzh";
