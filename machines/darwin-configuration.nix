@@ -58,6 +58,13 @@
       _FXSortFoldersFirst = true;
       FXEnableExtensionChangeWarning = false;
     };
+    screencapture = {
+      target = "clipboard"; # "file" "preview"
+    };
+    keyboard = {
+      enableKeyMapping = true;
+      remapCapsLockToEscape = true;
+    }
   };
 #   environment.variables = {
 #     EDITOR = "nvim";
