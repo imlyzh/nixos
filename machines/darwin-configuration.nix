@@ -35,6 +35,14 @@
     };
     controlcenter = {
       BatteryShowPercentage = true;
+    };
+    dock = {
+      autohide = true;
+      show-recents = true;
+      mru-spaces = false;
+      appswitcher-all-displays = true;
+      expose-group-apps = true;
+      scroll-to-open = true;
       wvous-bl-corner = 7;
     };
     finder = {
@@ -49,15 +57,6 @@
       ShowStatusBar = false;
       _FXSortFoldersFirst = true;
       FXEnableExtensionChangeWarning = false;
-    };
-    dock = {
-      autohide = true;
-      show-recents = true;
-      mru-spaces = false;
-      appswitcher-all-displays = true;
-      expose-group-apps = true;
-      scroll-to-open = true;
-      wvous-bl-corner = 1;
     };
   };
 #   environment.variables = {
