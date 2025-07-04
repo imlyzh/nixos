@@ -184,6 +184,12 @@
     # openFirewall = true;
   };
 
+  services.nfs.server = {
+    enable = true;
+    exports = "/home/lyzh/Music";
+    hostName = "lyzh-nixos-server";
+  };
+
   #services.nfs.server = {
   #  enable = true;
   #  openFirewall = true;
