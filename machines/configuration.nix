@@ -181,7 +181,7 @@
         "read only" = "yes";
       };
     };
-    openFirewall = true;
+    # openFirewall = true;
   };
 
   #services.nfs.server = {
