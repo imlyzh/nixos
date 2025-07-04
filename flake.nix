@@ -8,11 +8,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # nix-darwin = {
-    #   url = "github:LnL7/nix-darwin";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs:
@@ -25,13 +24,31 @@
           modules = [ ./machines/configuration.nix ];
         };
       };
-
+      programs.home-manager.enable = true;
       darwinConfigurations = {
         "lyzhdeMac" = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
           pkgs = nixpkgs.legacyPackages."aarch64-darwin";
-          specialArgs = { inherit inputs; };
-          modules = [ ./machines/darwin-configuration.nix ];
+          specialArgs = {
+            inherit inputs;
+            inherit home-manager;
+            pkgs = import inputs.nixpkgs {
+              system = "aarch64-darwin";
+              config.allowUnfree = true;
+            };
+          };
+          modules = [
+            ./machines/darwin-configuration.nix
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.users.lyzh = {
+                imports = [ ./home/darwin-home.nix ];
+              };
+            }
+            {
+              nixpkgs.config.allowUnfree = true;
+            }
+          ];
         };
       };
 

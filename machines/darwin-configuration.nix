@@ -1,16 +1,18 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, home-manager, ... }:
 {
-#   imports = [ inputs.home-manager.darwinModules.home-manager ];
-
-#   home-manager = {
-#     useGlobalPkgs = true;
-#     useUserPackages = true;
-#     users.lyzh = ../home/darwin-home.nix;
-#   };
   system.stateVersion = 6;
   system.primaryUser = "lyzh";
 
+  users.users.lyzh = {
+    name = "lyzh";
+    home = "/Users/lyzh";
+  };
+
   nixpkgs.config.allowUnfree = true;
+
+  home-manager = {
+    users.lyzh = {imports =[ ../home/darwin-home.nix ];};
+  };
 
   environment.systemPackages = with pkgs; [
     vim
@@ -18,7 +20,6 @@
     wget
     curl
     ripgrep
-    neovim
 
     the-unarchiver
 
@@ -28,18 +29,19 @@
 
     # vlc
     iterm2
-    warp
+    # warp
     # visual-studio-code
     zed-editor
     obsidian
     logseq
-    typora
+    # typora
 
     firefox
     discord
     spotify
-    calibre
+    # calibre
     transmission-gtk
+    mumble
   ];
 
   nix.gc = {
