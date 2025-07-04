@@ -30,7 +30,7 @@
       AppleShowAllExtensions = true;   # 显示所有文件扩展名
       FXDefaultSearchScope = "SCcf";
       NewWindowTarget = "Home";
-      QuitMenuItem = true;
+    #   QuitMenuItem = true;
       ShowMountedServersOnDesktop = true;
       ShowPathbar = true;
       ShowStatusBar = false;
