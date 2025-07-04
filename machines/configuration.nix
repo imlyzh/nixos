@@ -11,7 +11,6 @@
     ];
 
   home-manager = {
-    useGlobalPkgs = true;
     useUserPackages = true;
     sharedModules = [../home/home.nix];
     users.lyzh = {};
@@ -63,8 +62,8 @@
 
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
 
   # Configure keymap in X11
@@ -176,15 +175,16 @@
     # 如果你的网络有 WINS 服务器，可以在这里设置
     # workgroup = "WORKGROUP";
     # serverName = "nixos-server";
-    shares = {
-      public = {
-        path = "/home/lyzh/Music"; # 共享目录的路径
-        browseable = "yes";         # 在网络中可见
-        "read only" = "no";         # 可写入
-        "guest ok" = "yes";         # 允许访客访问
-        "create mask" = "0664";     # 新建文件的权限
-        "directory mask" = "0775";  # 新建目录的权限
-      };
+    # settings = {
+      shares = {
+        public = {
+          path = "/home/lyzh/Music"; # 共享目录的路径
+          browseable = "yes";         # 在网络中可见
+          "read only" = "no";         # 可写入
+          "guest ok" = "yes";         # 允许访客访问
+          "create mask" = "0664";     # 新建文件的权限
+          "directory mask" = "0775";  # 新建目录的权限
+        };
       #private = {
       #  path = "/srv/samba/private"; # 共享目录的路径
       #  browseable = "yes";
@@ -195,6 +195,7 @@
         # "valid users" = "user1 user2 @groupname";
       #};
     };
+    # };
     openFirewall = true;
   };
 
@@ -233,4 +234,3 @@
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "25.05"; # Did you read the comment?
 }
-

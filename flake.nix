@@ -24,7 +24,6 @@
           modules = [ ./machines/configuration.nix ];
         };
       };
-      programs.home-manager.enable = true;
       darwinConfigurations = {
         "lyzhdeMac" = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";

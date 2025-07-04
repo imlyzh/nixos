@@ -1,7 +1,6 @@
-{ config, pkgs, inputs, home-manager, ... }:
+{ config, pkgs, inputs, ... }:
 {
   system.stateVersion = 6;
-  system.primaryUser = "lyzh";
 
   users.users.lyzh = {
     name = "lyzh";
@@ -9,10 +8,6 @@
   };
 
   nixpkgs.config.allowUnfree = true;
-
-  home-manager = {
-    users.lyzh = {imports =[ ../home/darwin-home.nix ];};
-  };
 
   environment.systemPackages = with pkgs; [
     vim
@@ -23,7 +18,7 @@
 
     the-unarchiver
 
-    # raycast           # 新一代应用启动器
+    raycast           # 新一代应用启动器
     # alfred            # 经典工作流启动器
     # rectangle         # 开源窗口管理
 
@@ -40,7 +35,7 @@
     discord
     spotify
     # calibre
-    transmission-gtk
+    transmission_4-gtk
     mumble
   ];
 
