@@ -29,6 +29,21 @@
         };
       };
 
+      darwinConfigurations = {
+        "lyzh@lyzhdeMac" = nix-darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          specialArgs = { inherit inputs; };
+          modules = [
+            home-manager.darwinModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.lyzh = import ./home/home.nix;
+            }
+          ];
+        };
+      };
+
       homeConfigurations = {
         "lyzh-nix-machine" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
@@ -42,23 +57,5 @@
           modules = [ ./home/home.nix ];
         };
       };
-
-      # (可选) 如果完整地用 Nix 管理 macOS 系统
-      # darwinConfigurations = {
-      #   "lyzh@lyzhdeMacBook-Air" = nix-darwin.lib.darwinSystem {
-      #     system = "aarch64-darwin";
-      #     specialArgs = { inherit inputs; };
-      #     modules = [
-      #       # ... macOS 系统配置
-      #       # 同样可以集成 home-manager
-      #       home-manager.darwinModules.home-manager
-      #       {
-      #         home-manager.useGlobalPkgs = true;
-      #         home-manager.useUserPackages = true;
-      #         home-manager.users.lyzh = import ./home/home.nix;
-      #       }
-      #     ];
-      #   };
-      # };
     };
 }

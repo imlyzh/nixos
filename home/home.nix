@@ -24,6 +24,7 @@
     nushell
     ripgrep
     fd
+    jq
     fzf
     bat
     tailscale
