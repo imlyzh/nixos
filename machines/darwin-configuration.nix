@@ -64,7 +64,7 @@
     keyboard = {
       enableKeyMapping = true;
       remapCapsLockToEscape = true;
-    }
+    };
   };
 #   environment.variables = {
 #     EDITOR = "nvim";
