@@ -176,26 +176,25 @@
     # workgroup = "WORKGROUP";
     # serverName = "nixos-server";
     # settings = {
-      shares = {
-        public = {
-          path = "/home/lyzh/Music"; # 共享目录的路径
-          browseable = "yes";         # 在网络中可见
-          "read only" = "no";         # 可写入
-          "guest ok" = "yes";         # 允许访客访问
-          "create mask" = "0664";     # 新建文件的权限
-          "directory mask" = "0775";  # 新建目录的权限
-        };
+    shares = {
+      public = {
+        path = "/home/lyzh/Music"; # 共享目录的路径
+        browseable = "yes";         # 在网络中可见
+        "read only" = "no";         # 可写入
+        "guest ok" = "yes";         # 允许访客访问
+        "create mask" = "0664";     # 新建文件的权限
+        "directory mask" = "0775";  # 新建目录的权限
+      };
       private = {
-       path = "/home/lyzh/Music"; # 共享目录的路径
-       browseable = "yes";
-       "read only" = "no";
-       "guest ok" = "no";          # 不允许访客访问
-       "valid users" = "lyzh"; # 允许访问的系统用户 (请替换成你自己的用户名)
+        path = "/home/lyzh/Music"; # 共享目录的路径
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "no";          # 不允许访客访问
+        "valid users" = "lyzh"; # 允许访问的系统用户 (请替换成你自己的用户名)
         # 如果允许多个用户或一个组:
         # "valid users" = "user1 user2 @groupname";
-      #};
+      };
     };
-    # };
     openFirewall = true;
   };
 
