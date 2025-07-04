@@ -41,6 +41,27 @@
     openjdk
 
     rustup
+
+    the-unarchiver
+
+    # raycast           # 新一代应用启动器
+    # alfred            # 经典工作流启动器
+    # rectangle         # 开源窗口管理
+
+    vlc
+    iterm2
+    warp
+    # visual-studio-code
+    zed-editor
+    obsidian
+    logseq
+    typora
+
+    firefox
+    discord
+    spotify
+    calibre
+    transmission-gtk
   ];
 
   programs.git = {
