@@ -1,5 +1,15 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 {
+#   imports = [ inputs.home-manager.darwinModules.home-manager ];
+
+#   home-manager = {
+#     useGlobalPkgs = true;
+#     useUserPackages = true;
+#     users.lyzh = ../home/darwin-home.nix;
+#   };
+  system.stateVersion = 6;
+  system.primaryUser = "lyzh";
+
   environment.systemPackages = with pkgs; [
     vim
     git
@@ -15,8 +25,17 @@
   };
   system.defaults = {
     finder = {
+      AppleShowAllFiles = true;
       _FXShowPosixPathInTitle = true; # 在标题栏显示完整路径
       AppleShowAllExtensions = true;   # 显示所有文件扩展名
+      FXDefaultSearchScope = "SCcf";
+      NewWindowTarget = "Home";
+      QuitMenuItem = true;
+      ShowMountedServersOnDesktop = true;
+      ShowPathbar = true;
+      ShowStatusBar = true;
+      _FXSortFoldersFirst = true;
+      FXEnableExtensionChangeWarning = false;
     };
     dock = {
       autohide = true;
@@ -28,28 +47,4 @@
 #     EDITOR = "nvim";
 #   };
   programs.zsh.enable = true;
-
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-
-  home-manager.users.lyzh = { pkgs, ... }: {
-    imports = [ "../home/home.nix" ];
-
-    programs.zsh = {
-      enable = true;
-      oh-my-zsh = {
-        enable = true;
-        plugins = [ "git" "sudo" ];
-        theme = "robbyrussell";
-      };
-    #   shellAliases = {
-    #     ll = "ls -l";
-    #     update = "darwin-rebuild switch --flake ~/.config/nix-darwin-config";
-    #   };
-    };
-
-    # home.sessionVariables = {
-    #   LANG = "en_US.UTF-8";
-    # };
-  };
 }

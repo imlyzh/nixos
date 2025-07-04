@@ -16,37 +16,28 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs:
-    let
-      system = "x86_64-linux"; # "aarch64-linux", "aarch64-darwin", etc.
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
     {
       nixosConfigurations = {
         "lyzh-nixos" = nixpkgs.lib.nixosSystem {
-          inherit system;
+          system = "x86_64-linux";
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [ ./machines/configuration.nix ];
         };
       };
 
       darwinConfigurations = {
-        "lyzh@lyzhdeMac" = nix-darwin.lib.darwinSystem {
+        "lyzhdeMac" = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
+          pkgs = nixpkgs.legacyPackages."aarch64-darwin";
           specialArgs = { inherit inputs; };
-          modules = [
-            home-manager.darwinModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.lyzh = import ./home/home.nix;
-            }
-          ];
+          modules = [ ./machines/darwin-configuration.nix ];
         };
       };
 
       homeConfigurations = {
         "lyzh-nix-machine" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
+          pkgs = nixpkgs.legacyPackages."aarch64-darwin";
           extraSpecialArgs = { inherit inputs; };
           modules = [ ./home/home.nix ];
         };
@@ -54,7 +45,7 @@
         "lyzhdeMac" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages."aarch64-darwin";
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home/home.nix ];
+          modules = [ ./home/darwin-home.nix ];
         };
       };
     };

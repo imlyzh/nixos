@@ -2,7 +2,7 @@
 {
   home = {
     username = "lyzh";
-    homeDirectory = "/home/lyzh";
+    homeDirectory = "/Users/lyzh";
     stateVersion = "25.05";
   };
 
@@ -36,14 +36,11 @@
 
     verilator
     gtkwave
-    # vscode
+    vscode
 
     openjdk
 
     rustup
-
-    # clash-meta
-    # v2raya
   ];
 
   programs.git = {
@@ -67,6 +64,15 @@
   #   all_proxy = "";
   #   NO_PROXY = "localhost,127.0.0.1, ::1";
   # };
+
+  programs.zsh = {
+    enable = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "sudo" ];
+      theme = "robbyrussell";
+    };
+  };
 
   programs.home-manager.enable = true;
 }
