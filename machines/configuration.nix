@@ -12,7 +12,7 @@
 
   home-manager = {
     useUserPackages = true;
-    sharedModules = [../home/home.nix];
+    sharedModules = [../home/home.nix ../home/dev.nix];
     users.lyzh = {};
   };
 

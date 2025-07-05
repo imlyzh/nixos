@@ -8,8 +8,6 @@
     home = "/Users/lyzh";
   };
 
-  nixpkgs.config.allowUnfree = true;
-
   environment.systemPackages = with pkgs; [
     vim
     git
@@ -26,7 +24,7 @@
     # vlc
     iterm2
     # warp
-    vscode
+    # vscode
     zed-editor
     obsidian
 
