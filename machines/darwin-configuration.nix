@@ -26,11 +26,9 @@
     # vlc
     iterm2
     # warp
-    # visual-studio-code
+    vscode
     zed-editor
     obsidian
-    logseq
-    # typora
 
     firefox
     discord
@@ -86,7 +84,7 @@
   system = {
     keyboard = {
       enableKeyMapping = true;
-      remapCapsLockToEscape = true;
+      remapCapsLockToControl = true;
     };
   };
 #   environment.variables = {
