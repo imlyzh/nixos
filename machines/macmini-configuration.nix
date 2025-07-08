@@ -18,20 +18,15 @@
     the-unarchiver
 
     raycast           # 新一代应用启动器
-    # alfred            # 经典工作流启动器
     rectangle         # 开源窗口管理
 
-    # vlc
     iterm2
-    # warp
-    # vscode
     zed-editor
     obsidian
 
     firefox
     discord
     spotify
-    # calibre
     transmission_4-gtk
     mumble
   ];
@@ -54,7 +49,7 @@
       BatteryShowPercentage = true;
     };
     dock = {
-      autohide = true;
+      autohide = false;
       show-recents = true;
       mru-spaces = false;
       appswitcher-all-displays = true;
