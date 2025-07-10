@@ -9,6 +9,7 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
+    tailscale
     # clash-meta
     # v2raya
   ];

@@ -9,12 +9,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    vim
-    git
-    wget
-    curl
-    ripgrep
-
     the-unarchiver
 
     raycast           # 新一代应用启动器

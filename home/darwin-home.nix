@@ -9,37 +9,9 @@
   # nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
-    rsync
-    zsh
-    fish
-    wget
-    curl
-    htop
-    btop
-    tlrc
-    tree
-    git
-    neovim
-    emacs
-    nushell
-    ripgrep
-    fd
-    jq
-    fzf
-    bat
     tailscale
-    neofetch
-    dust
-    typst
-
-    direnv
-
-    verilator
-    gtkwave
-
-    openjdk
-
-    rustup
+    # clash-meta
+    # v2raya
   ];
 
   programs.git = {

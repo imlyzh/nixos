@@ -32,7 +32,7 @@
             home-manager.darwinModules.home-manager
             {
               home-manager.users.lyzh = {
-                imports = [ ./home/darwin-home.nix ./home/dev.nix ];
+                imports = [ ./home/darwin-home.nix ./home/shell.nix ./home/dev.nix ];
               };
             }
           ];
@@ -48,7 +48,7 @@
             home-manager.darwinModules.home-manager
             {
               home-manager.users.lyzh = {
-                imports = [ ./home/darwin-home.nix ./home/dev.nix ];
+                imports = [ ./home/darwin-home.nix ./home/shell.nix ./home/dev.nix ];
               };
             }
           ];
@@ -60,13 +60,13 @@
         "linux" = home-manager.lib.homeManagerConfiguration rec {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home/home.nix ./home/dev.nix ];
+          modules = [ ./home/home.nix ./home/shell.nix ./home/dev.nix ];
         };
 
         "mac" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home/darwin-home.nix ./home/dev.nix ];
+          modules = [ ./home/darwin-home.nix ./home/shell.nix ./home/dev.nix ];
         };
       };
     };

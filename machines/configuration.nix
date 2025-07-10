@@ -105,21 +105,11 @@
       btrfs-progs
 
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-      #neovim
-      #emacs
 
       wget
       curl
 
-      #direnv
-
       git
-      #zsh
-      #fish
-
-      #gcc
-      cmake
-      ninja
 
       code-server
 
