@@ -8,7 +8,7 @@ sudo nixos-rebuild switch --flake .#
 
 ## use in mac
 ```sh
-sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin -- switch --flake .#macmini
+sudo darwin-rebuild switch --flake .#macbook
 ```
 
 ## use in home-manager(linux)
