@@ -3,8 +3,6 @@
   system.stateVersion = 6;
   system.primaryUser = "lyzh";
 
-  nix.enable = false;
-
   users.users.lyzh = {
     name = "lyzh";
     home = "/Users/lyzh";
