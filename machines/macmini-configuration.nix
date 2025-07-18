@@ -62,8 +62,6 @@
       wvous-bl-corner = 7;
     };
     finder = {
-      DisableAllAnimations = true;
-
       AppleShowAllFiles = true;
       _FXShowPosixPathInTitle = true; # 在标题栏显示完整路径
       AppleShowAllExtensions = true;   # 显示所有文件扩展名
