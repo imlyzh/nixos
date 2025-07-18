@@ -33,8 +33,8 @@
   # };
   system.defaults = {
     global.NSAutomaticWindowAnimationsEnabled = false;
-    # Finder 设置
-    finder.DisableAllAnimations = true;
+    universalaccess.reduceMotion
+
     NSGlobalDomain.AppleShowAllExtensions = true;
     NSGlobalDomain.AppleShowAllFiles = true;
     NSGlobalDomain.NSDocumentSaveNewDocumentsToCloud = false;
@@ -48,10 +48,10 @@
       BatteryShowPercentage = true;
     };
     dock = {
-      launchanim = false;
-      expose-animation-duration = 0.1;
-      autohide-delay = 0.0;
-      autohide-time-modifier = 0.0;
+      # launchanim = false;
+      # expose-animation-duration = 0.1;
+      # autohide-delay = 0.0;
+      # autohide-time-modifier = 0.0;
 
       autohide = false;
       show-recents = true;
@@ -62,6 +62,8 @@
       wvous-bl-corner = 7;
     };
     finder = {
+      DisableAllAnimations = true;
+
       AppleShowAllFiles = true;
       _FXShowPosixPathInTitle = true; # 在标题栏显示完整路径
       AppleShowAllExtensions = true;   # 显示所有文件扩展名
