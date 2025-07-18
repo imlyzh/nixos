@@ -23,10 +23,6 @@
       };
       darwinConfigurations = {
         "macbook" = nix-darwin.lib.darwinSystem {
-          pkgs = import nixpkgs {
-            system = "aarch64-darwin";
-            config.allowUnfree = true;
-          };
           system = "aarch64-darwin";
           modules = [
             ./machines/macbook-configuration.nix
@@ -40,10 +36,7 @@
           specialArgs = { inherit inputs; };
         };
         "macmini" = nix-darwin.lib.darwinSystem {
-          pkgs = import nixpkgs {
-            system = "aarch64-darwin";
-            config.allowUnfree = true;
-          };
+          system = "aarch64-darwin";
           modules = [
             ./machines/macmini-configuration.nix
             home-manager.darwinModules.home-manager
