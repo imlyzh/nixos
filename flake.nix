@@ -2,7 +2,7 @@
   description = "Lyzh's NixOS and Home Manager configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -16,17 +16,17 @@
     {
       nixosConfigurations = {
         "lyzh-nixos-laptop" = nixpkgs.lib.nixosSystem {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          # pkgs = nixpkgs.legacyPackages.x86_64-linux;
           specialArgs = { inherit inputs; };
           modules = [ ./machines/configuration.nix ];
         };
       };
       darwinConfigurations = {
         "macbook" = nix-darwin.lib.darwinSystem {
-          pkgs = import nixpkgs {
-            system = "aarch64-darwin";
-            config.allowUnfree = true;
-          };
+          # pkgs = import nixpkgs {
+            # system = "aarch64-darwin";
+            # config.allowUnfree = true;
+          # };
           modules = [
             ./machines/macbook-configuration.nix
             home-manager.darwinModules.home-manager
@@ -39,10 +39,10 @@
           specialArgs = { inherit inputs; };
         };
         "macmini" = nix-darwin.lib.darwinSystem {
-          pkgs = import nixpkgs {
-            system = "aarch64-darwin";
-            config.allowUnfree = true;
-          };
+          # pkgs = import nixpkgs {
+          #   system = "aarch64-darwin";
+          #   config.allowUnfree = true;
+          # };
           modules = [
             ./machines/macmini-configuration.nix
             home-manager.darwinModules.home-manager
@@ -58,13 +58,13 @@
 
       homeConfigurations = {
         "linux" = home-manager.lib.homeManagerConfiguration rec {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          # pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs; };
           modules = [ ./home/home.nix ./home/shell.nix ./home/dev.nix ];
         };
 
         "mac" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          # pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           extraSpecialArgs = { inherit inputs; };
           modules = [ ./home/darwin-home.nix ./home/shell.nix ./home/dev.nix ];
         };
