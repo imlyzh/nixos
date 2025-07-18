@@ -32,7 +32,6 @@
     # options = "--delete-older-than 30d";
   # };
   system.defaults = {
-    global.NSAutomaticWindowAnimationsEnabled = false;
     universalaccess.reduceMotion = true;
 
     NSGlobalDomain.AppleShowAllExtensions = true;
