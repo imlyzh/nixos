@@ -33,7 +33,7 @@
   # };
   system.defaults = {
     global.NSAutomaticWindowAnimationsEnabled = false;
-    universalaccess.reduceMotion
+    universalaccess.reduceMotion = true;
 
     NSGlobalDomain.AppleShowAllExtensions = true;
     NSGlobalDomain.AppleShowAllFiles = true;
