@@ -31,7 +31,11 @@
     automatic = true;
     options = "--delete-older-than 30d";
   };
+
   system.defaults = {
+    global.NSAutomaticWindowAnimationsEnabled = false;
+    # Finder 设置
+    finder.DisableAllAnimations = true;
     NSGlobalDomain.AppleShowAllExtensions = true;
     NSGlobalDomain.AppleShowAllFiles = true;
     NSGlobalDomain.NSDocumentSaveNewDocumentsToCloud = false;
@@ -45,6 +49,11 @@
       BatteryShowPercentage = true;
     };
     dock = {
+      launchanim = false;
+      expose-animation-duration = 0.1;
+      autohide-delay = 0.0;
+      autohide-time-modifier = 0.0;
+
       autohide = false;
       show-recents = true;
       mru-spaces = false;
