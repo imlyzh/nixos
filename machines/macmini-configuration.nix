@@ -1,9 +1,9 @@
 { config, pkgs, inputs, ... }:
 {
+  nix.enable = false;
+
   system.stateVersion = 6;
   system.primaryUser = "lyzh";
-
-  nix.enable = false;
 
   users.users.lyzh = {
     name = "lyzh";
@@ -27,11 +27,10 @@
     mumble
   ];
 
-  nix.gc = {
-    automatic = true;
-    options = "--delete-older-than 30d";
-  };
-
+  # nix.gc = {
+    # automatic = true;
+    # options = "--delete-older-than 30d";
+  # };
   system.defaults = {
     global.NSAutomaticWindowAnimationsEnabled = false;
     # Finder 设置

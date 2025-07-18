@@ -7,6 +7,13 @@ sudo nixos-rebuild switch --flake .#
 ```
 
 ## use in mac
+
+### first bootload
+
+```sh
+sudo nix --extra-experimental-features "nix-command flakes" run nix-darwin/nix-darwin-25.05#darwin-rebuild -- switch --flake .#macmini
+```
+
 ```sh
 sudo darwin-rebuild switch --flake .#macbook
 ```
