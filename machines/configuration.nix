@@ -112,7 +112,7 @@
       git
 
       code-server
-      code
+      vscode
 
       tailscale
       clash-verge
