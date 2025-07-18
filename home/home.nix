@@ -10,7 +10,7 @@
 
   home.packages = with pkgs; [
     tailscale
-    # clash-meta
+    clash-verge-rev
     # v2raya
     podman
   ];
