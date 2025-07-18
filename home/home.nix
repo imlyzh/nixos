@@ -12,6 +12,7 @@
     tailscale
     # clash-meta
     # v2raya
+    podman
   ];
 
   programs.direnv = {
