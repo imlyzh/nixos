@@ -112,11 +112,13 @@
       git
 
       code-server
+      code
 
       tailscale
-      #clash-meta
+      clash-verge
       v2raya
       proxychains-ng
+
     ];
 
   environment.variables = {
