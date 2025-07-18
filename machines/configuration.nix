@@ -121,6 +121,10 @@
 
     ];
 
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "vscode"
+  ];
+
   environment.variables = {
     RUSTUP_HOME = "\${HOME}/.rustup";
     CARGO_HOME = "\${HOME}/.cargo";
