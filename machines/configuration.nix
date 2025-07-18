@@ -115,7 +115,7 @@
       vscode
 
       tailscale
-      clash-verge
+      clash-verge-rev
       v2raya
       proxychains-ng
 
