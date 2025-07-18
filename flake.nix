@@ -2,7 +2,7 @@
   description = "Lyzh's NixOS and Home Manager configurations";
 
   inputs = {
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -23,10 +23,11 @@
       };
       darwinConfigurations = {
         "macbook" = nix-darwin.lib.darwinSystem {
-          # pkgs = import nixpkgs {
-            # system = "aarch64-darwin";
-            # config.allowUnfree = true;
-          # };
+          pkgs = import nixpkgs {
+            system = "aarch64-darwin";
+            config.allowUnfree = true;
+          };
+          system = "aarch64-darwin";
           modules = [
             ./machines/macbook-configuration.nix
             home-manager.darwinModules.home-manager
@@ -39,10 +40,10 @@
           specialArgs = { inherit inputs; };
         };
         "macmini" = nix-darwin.lib.darwinSystem {
-          # pkgs = import nixpkgs {
-          #   system = "aarch64-darwin";
-          #   config.allowUnfree = true;
-          # };
+          pkgs = import nixpkgs {
+            system = "aarch64-darwin";
+            config.allowUnfree = true;
+          };
           modules = [
             ./machines/macmini-configuration.nix
             home-manager.darwinModules.home-manager
