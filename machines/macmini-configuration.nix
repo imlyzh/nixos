@@ -1,5 +1,7 @@
 { config, pkgs, inputs, ... }:
 {
+  nix.enable = false;
+
   system.stateVersion = 6;
   system.primaryUser = "lyzh";
 
