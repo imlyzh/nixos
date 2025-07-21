@@ -9,8 +9,12 @@
 
     openjdk
 
-    # rustup
+    rustup
     # zig
+  ];
+
+  home.sessionPath = [
+    "$HOME/.cargo/bin"
   ];
 
   programs.git = {
