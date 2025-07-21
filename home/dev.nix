@@ -9,8 +9,8 @@
 
     openjdk
 
-    rustup
-    zig
+    # rustup
+    # zig
   ];
 
   programs.git = {

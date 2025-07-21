@@ -10,15 +10,27 @@
     # nix darwin
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    # rust
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-darwin, rust-overlay, ... }@inputs:
     {
       nixosConfigurations = {
         "lyzh-nixos-laptop" = nixpkgs.lib.nixosSystem {
           # pkgs = nixpkgs.legacyPackages.x86_64-linux;
           specialArgs = { inherit inputs; };
-          modules = [ ./machines/configuration.nix ];
+          modules = [
+            ./machines/configuration.nix
+            ({ pkgs, ... }: {
+            nixpkgs.overlays = [ rust-overlay.overlays.default ];
+            environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+            })
+            ];
         };
       };
       darwinConfigurations = {
@@ -32,6 +44,10 @@
                 imports = [ ./home/darwin-home.nix ./home/shell.nix ./home/dev.nix ];
               };
             }
+            ({ pkgs, ... }: {
+            nixpkgs.overlays = [ rust-overlay.overlays.default ];
+            environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+            })
           ];
           specialArgs = { inherit inputs; };
         };
@@ -45,6 +61,10 @@
                 imports = [ ./home/darwin-home.nix ./home/shell.nix ./home/dev.nix ];
               };
             }
+            ({ pkgs, ... }: {
+            nixpkgs.overlays = [ rust-overlay.overlays.default ];
+            environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+            })
           ];
           specialArgs = { inherit inputs; };
         };
@@ -54,13 +74,29 @@
         "linux" = home-manager.lib.homeManagerConfiguration rec {
           # pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home/home.nix ./home/shell.nix ./home/dev.nix ];
+          modules = [
+            ./home/home.nix
+            ./home/shell.nix
+            ./home/dev.nix
+            ({ pkgs, ... }: {
+            nixpkgs.overlays = [ rust-overlay.overlays.default ];
+            environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+            })
+            ];
         };
 
         "mac" = home-manager.lib.homeManagerConfiguration {
           # pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           extraSpecialArgs = { inherit inputs; };
-          modules = [ ./home/darwin-home.nix ./home/shell.nix ./home/dev.nix ];
+          modules = [
+            ./home/darwin-home.nix
+            ./home/shell.nix
+            ./home/dev.nix
+            ({ pkgs, ... }: {
+            nixpkgs.overlays = [ rust-overlay.overlays.default ];
+            environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+            })
+            ];
         };
       };
     };

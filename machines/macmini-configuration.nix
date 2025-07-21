@@ -87,6 +87,13 @@
       remapCapsLockToControl = true;
     };
   };
+
+  environment.variables = {
+    RUSTUP_HOME = "\${HOME}/.rustup";
+    CARGO_HOME = "\${HOME}/.cargo";
+    CC = "clang";
+    CXX = "clang++";
+  };
 #   environment.variables = {
 #     EDITOR = "nvim";
 #   };

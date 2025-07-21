@@ -24,11 +24,6 @@
     enable = true;
   };
 
-  #programs.rustup = {
-  #  enable = true;
-  #  toolchains = "stable";
-  #};
-
   # home.sessionVariables = {
   #   http_proxy = "";
   #   https_proxy = "";
