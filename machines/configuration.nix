@@ -58,47 +58,19 @@
   # services.xserver.enable = true; # 注释掉
   # services.displayManager.gdm.enable = true; # 注释掉
   # programs.hyprland.enable = true; # 把 Hyprland 也收起来
+  services.gnome.gnome-keyring.enable = true;
 
   # 2. 换上轻巧漂亮的 greetd 登录管理器！
   services.greetd = {
     enable = true;
     # wlgreet 是 greetd 的 Wayland 界面，很搭哦
-    settings.default_session.command = "${pkgs.greetd.wlgreet}/bin/wlgreet --command niri";
-    # 如果你想默认启动 Niri，就把上面的 sway 换成 niri
+    settings.default_session.command = "${pkgs.greetd.wlgreet}/bin/tuigreet --time --cmd niri";
   };
 
   # 3. 这是 Sway 的魔法配置区！(当前启用)
   programs.sway = {
     enable = true;
-    # 如果主人想要带特效的 SwayFX，就把下面这行的注释去掉，再把上一行注释掉！
-    # package = pkgs.swayfx;
-
-    # 小狐娘给你准备了一份基础配置，这样开机就能用啦！
-    # extraConfig = ''
-    #   # 设置你的 $mod 键，Win 键就是 Mod4
-    #   set $mod Mod4
-
-    #   # 启动终端 (主人装了 kitty，我们就用 kitty)
-    #   bindsym $mod+Return exec kitty
-
-    #   # 关闭窗口
-    #   bindsym $mod+Shift+q kill
-
-    #   # 启动程序 (用 wofi)
-    #   bindsym $mod+d exec wofi --show drun
-
-    #   # 锁屏
-    #   bindsym $mod+Control+l exec swaylock
-
-    #   # 重载配置
-    #   bindsym $mod+Shift+c reload
-
-    #   # 退出 Sway
-    #   bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-    # '';
-
-    # 让 Sway 也能用 X11 的老程序
-    # xwayland = true;
+    wrapperFeatures.gtk = true;
   };
 
   # 4. 这是 Niri 的设计图纸！(已注释，随时可以启用)
@@ -117,6 +89,31 @@
       ];
     };
   };
+
+  # wayland.windowManager.sway = {
+  #   enable = true;
+  #   wrapperFeatures.gtk = true; # Fixes common issues with GTK 3 apps
+  #   config = rec {
+  #     modifier = "Mod4";
+  #     # Use kitty as default terminal
+  #     terminal = "kitty";
+  #     startup = [
+  #       # Launch Firefox on start
+  #       {command = "firefox";}
+  #     ];
+  #   };
+  # };
+
+  programs.alacritty.enable = true; # Super+T in the default setting (terminal)
+  programs.fuzzel.enable = true; # Super+D in the default setting (app launcher)
+  programs.swaylock.enable = true; # Super+Alt+L in the default setting (screen locker)
+  programs.waybar.enable = true; # launch on startup in the default setting (bar)
+  services.mako.enable = true; # notification daemon
+  services.swayidle.enable = true; # idle management daemon
+  services.gnome.gnome-keyring.enable = true; # secret service
+  services.polkit-gnome.enable = true; # polkit
+  security.polkit.enable = true; # polkit
+  security.pam.services.swaylock = {};
 
   # 5. Wayland 世界的“胶水”程序，非常重要！
   xdg.portal = {
@@ -167,7 +164,8 @@
     kitty
     wofi
     mako
-    swww # Sway 可以用 swaybg，但 swww 也很棒！
+    # swww # Sway 可以用 swaybg，但 swww 也很棒！
+    swaybg
     swaylock # 锁屏工具
     swayidle # 空闲管理，可以配合锁屏用
     grim
