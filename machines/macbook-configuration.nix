@@ -10,7 +10,10 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  nix.settings.extra-platforms = [ "x86_64-linux" ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # virtualisation.rosetta.enable = true;
 
   environment.systemPackages = with pkgs; [
     the-unarchiver
@@ -88,5 +91,6 @@
 #   environment.variables = {
 #     EDITOR = "nvim";
 #   };
+  # programs.rosetta.enable = true;
   programs.zsh.enable = true;
 }
