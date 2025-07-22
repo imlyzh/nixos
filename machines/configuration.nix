@@ -99,7 +99,7 @@
     # '';
 
     # 让 Sway 也能用 X11 的老程序
-    xwayland = true;
+    # xwayland = true;
   };
 
   # 4. 这是 Niri 的设计图纸！(已注释，随时可以启用)
