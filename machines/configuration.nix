@@ -63,7 +63,7 @@
   services.greetd = {
     enable = true;
     # wlgreet 是 greetd 的 Wayland 界面，很搭哦
-    settings.default_session.command = "${pkgs.greetd.wlgreet}/bin/wlgreet --command sway";
+    settings.default_session.command = "${pkgs.greetd.wlgreet}/bin/wlgreet --command niri";
     # 如果你想默认启动 Niri，就把上面的 sway 换成 niri
   };
 
@@ -102,7 +102,6 @@
   };
 
   # 4. 这是 Niri 的设计图纸！(已注释，随时可以启用)
-  /*
   programs.niri = {
     enable = true;
     # 小狐娘也给 Niri 准备了基础配置
@@ -118,7 +117,6 @@
       ];
     };
   };
-  */
 
   # 5. Wayland 世界的“胶水”程序，非常重要！
   xdg.portal = {
