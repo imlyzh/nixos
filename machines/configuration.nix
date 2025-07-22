@@ -204,23 +204,23 @@
   ];
 
   services.openssh.enable = true;
-  services.samba = {
-    enable = true;
-    settings = {
-      public = {
-        browseable = "yes";
-        comment = "Public samba share.";
-        "guest ok" = "yes";
-        path = "/home/lyzh/Music";
-        "read only" = "yes";
-      };
-    };
-  };
-  services.nfs.server = {
-    enable = true;
-    exports = "/home/lyzh/Music 0.0.0.0(rw,fsid=0,no_subtree_check)";
-    hostName = "lyzh-nixos";
-  };
+  # services.samba = {
+  #   enable = true;
+  #   settings = {
+  #     public = {
+  #       browseable = "yes";
+  #       comment = "Public samba share.";
+  #       "guest ok" = "yes";
+  #       path = "/home/lyzh/Music";
+  #       "read only" = "yes";
+  #     };
+  #   };
+  # };
+  # services.nfs.server = {
+  #   enable = true;
+  #   exports = "/home/lyzh/Music 0.0.0.0(rw,fsid=0,no_subtree_check)";
+  #   hostName = "lyzh-nixos";
+  # };
   networking.firewall.enable = false;
   system.stateVersion = "25.05";
 }
