@@ -1,18 +1,20 @@
 { pkgs,... }:
-let
-  rosettaPkgs = import pkgs.path {
-    system = "x86_64-darwin";
-    config.allowUnsupportedSystem = true;
-    config.allowUnfree = true;
-    # config.allowBroken = true;
-  };
-in
+# let
+#   rosettaPkgs = import pkgs.path {
+#     system = "x86_64-darwin";
+#     config.allowUnsupportedSystem = true;
+#     config.allowUnfree = true;
+#     # config.allowBroken = true;
+#   };
+# in
 {
   home = {
     username = "lyzh";
     homeDirectory = "/Users/lyzh";
     stateVersion = "25.05";
   };
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nixpkgs.config.allowUnsupportedSystem = true;
   nixpkgs.config.allowUnfree = true;
@@ -34,32 +36,20 @@ in
     transmission_4-gtk
     mumble
 
-    # wineWow64Packages.full
-    # wineWow64Packages.stableFull
-    # wineWow64Packages.waylandFull
     whisky
     protonplus
 
-    # (rosettaPkgs.clash-verge-rev.overrideAttrs (old: {
-    #   meta.platforms = old.meta.platforms ++ ["x86_64-darwin"];
+    v2raya
+    mihomo
+
+    # (rosettaPkgs.wine64.overrideAttrs (old: {
+      # meta.platforms = old.meta.platforms ++ ["x86_64-darwin"];
     # }))
-    # (rosettaPkgs.v2raya.overrideAttrs (old: {
-    #   meta.platforms = old.meta.platforms ++ ["x86_64-darwin"];
-    # }))
+
     # (rosettaPkgs.steam.overrideAttrs (old: {
     #   meta.platforms = old.meta.platforms ++ ["x86_64-darwin"];
     # }))
   ];
-
-  programs.git = {
-    enable = true;
-    userName = "imlyzh";
-    userEmail = "enterindex@gmail.com";
-  };
-
-  programs.direnv = {
-    enable = true;
-  };
 
   # home.sessionVariables = {
   #   http_proxy = "";
@@ -67,15 +57,6 @@ in
   #   all_proxy = "";
   #   NO_PROXY = "localhost,127.0.0.1, ::1";
   # };
-
-  programs.zsh = {
-    enable = true;
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" "sudo" ];
-      theme = "robbyrussell";
-    };
-  };
 
   programs.home-manager.enable = true;
 }

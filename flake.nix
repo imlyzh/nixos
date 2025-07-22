@@ -22,13 +22,12 @@
     {
       nixosConfigurations = {
         "lyzh-nixos-laptop" = nixpkgs.lib.nixosSystem {
-          # pkgs = nixpkgs.legacyPackages.x86_64-linux;
           specialArgs = { inherit inputs; };
           modules = [
             ./machines/configuration.nix
             ({ pkgs, ... }: {
-            nixpkgs.overlays = [ rust-overlay.overlays.default ];
-            environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+              nixpkgs.overlays = [ rust-overlay.overlays.default ];
+              environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
             })
             ];
         };

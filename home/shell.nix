@@ -23,10 +23,15 @@
     tmux
     coreutils
   ];
-
-  programs.git = {
+  programs.zsh = {
     enable = true;
-    userName = "imlyzh";
-    userEmail = "enterindex@gmail.com";
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "sudo" ];
+      theme = "robbyrussell";
+    };
+    syntaxHighlighting.highlighters = [
+      "main" "brackets" "pattern" "cursor" "regexp" "root" "line"
+    ];
   };
 }

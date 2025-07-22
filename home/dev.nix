@@ -11,10 +11,8 @@
 
     rustup
     # zig
-  ];
 
-  home.sessionPath = [
-    "$HOME/.cargo/bin"
+    qemu
   ];
 
   programs.git = {
@@ -22,4 +20,12 @@
     userName = "imlyzh";
     userEmail = "enterindex@gmail.com";
   };
+
+  programs.direnv = {
+    enable = true;
+  };
+
+  home.sessionPath = [
+    "$HOME/.cargo/bin"
+  ];
 }
