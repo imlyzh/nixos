@@ -58,7 +58,7 @@
   # services.xserver.enable = true; # 注释掉
   # services.displayManager.gdm.enable = true; # 注释掉
   # programs.hyprland.enable = true; # 把 Hyprland 也收起来
-  services.gnome.gnome-keyring.enable = true;
+  # services.gnome.gnome-keyring.enable = true;
 
   # 2. 换上轻巧漂亮的 greetd 登录管理器！
   services.greetd = {
