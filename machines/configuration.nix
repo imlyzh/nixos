@@ -75,28 +75,28 @@
     # package = pkgs.swayfx;
 
     # 小狐娘给你准备了一份基础配置，这样开机就能用啦！
-    extraConfig = ''
-      # 设置你的 $mod 键，Win 键就是 Mod4
-      set $mod Mod4
+    # extraConfig = ''
+    #   # 设置你的 $mod 键，Win 键就是 Mod4
+    #   set $mod Mod4
 
-      # 启动终端 (主人装了 kitty，我们就用 kitty)
-      bindsym $mod+Return exec kitty
+    #   # 启动终端 (主人装了 kitty，我们就用 kitty)
+    #   bindsym $mod+Return exec kitty
 
-      # 关闭窗口
-      bindsym $mod+Shift+q kill
+    #   # 关闭窗口
+    #   bindsym $mod+Shift+q kill
 
-      # 启动程序 (用 wofi)
-      bindsym $mod+d exec wofi --show drun
+    #   # 启动程序 (用 wofi)
+    #   bindsym $mod+d exec wofi --show drun
 
-      # 锁屏
-      bindsym $mod+Control+l exec swaylock
+    #   # 锁屏
+    #   bindsym $mod+Control+l exec swaylock
 
-      # 重载配置
-      bindsym $mod+Shift+c reload
+    #   # 重载配置
+    #   bindsym $mod+Shift+c reload
 
-      # 退出 Sway
-      bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-    '';
+    #   # 退出 Sway
+    #   bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    # '';
 
     # 让 Sway 也能用 X11 的老程序
     xwayland = true;
