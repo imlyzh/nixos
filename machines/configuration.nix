@@ -50,7 +50,30 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8"; # «--- 小狐娘建议开启这个，对很多程序有好处
+  i18n.extraLocaleSettings = { # «--- 小狐娘帮你把中文环境也配好啦
+    LC_ADDRESS = "zh_CN.UTF-8";
+    LC_IDENTIFICATION = "zh_CN.UTF-8";
+    LC_MEASUREMENT = "zh_CN.UTF-8";
+    LC_MONETARY = "zh_CN.UTF-8";
+    LC_NAME = "zh_CN.UTF-8";
+    LC_NUMERIC = "zh_CN.UTF-8";
+    LC_PAPER = "zh_CN.UTF-8";
+    LC_TELEPHONE = "zh_CN.UTF-8";
+    LC_TIME = "zh_CN.UTF-8";
+  };
+
+  i18n.inputMethod = {
+    # 这是根据警告信息修改的，更现代的写法！
+    enable = true;
+    type = "fcitx5";
+    # 我们把插件列表写得更精确，就不会找不到了！
+    fcitx5.addons = [
+      pkgs.fcitx5-chinese-addons
+      pkgs.fcitx5-gtk
+      # pkgs.fcitx5-qt  # «--- 看！我们告诉了它完整的路径 pkgs.fcitx5-qt！
+    ];
+  };
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
@@ -60,11 +83,16 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-
-  # Enable the GNOME Desktop Environment.
+  # «--- 小狐娘在这里做了改动哦！ ---»
+  # 我们保留 GDM 作为登录器，但禁用完整的 GNOME 桌面，这样更轻量
   services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
+  # services.desktopManager.gnome.enable = true; # «--- 注释掉这个！
 
+  # «--- 小狐娘在这里添加了 Hyprland 的核心配置 ---»
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -74,13 +102,15 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  # services.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
+  # «--- 小狐娘帮你启用了 Pipewire 来管理声音 ---»
+  # services.pulseaudio.enable = true; # 这个是旧的，我们不用啦
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+    alsa.enable = true;    # 让老程序也能用
+    alsa.support32Bit = true;
+    jack.enable = true;    # 专业音频支持
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
@@ -89,37 +119,45 @@
   services.v2raya.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.lyzh = {
-      isNormalUser = true;
-      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-      uid = 1001;
-      hashedPassword = "$6$3EPkfBlo6DmngTcl$fxPkkvpjjSyAniQoZ2roAGCvgKXG51e824SDEr3FtMXX.E4h3qIxsNMLI6d0KZeAvLQrtgUkbu4m1dLeYJ11H.";
-      packages = with pkgs; [];
-    };
+  users.users.lyzh = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    uid = 1001;
+    hashedPassword = "$6$3EPkfBlo6DmngTcl$fxPkkvpjjSyAniQoZ2roAGCvgKXG51e824SDEr3FtMXX.E4h3qIxsNMLI6d0KZeAvLQrtgUkbu4m1dLeYJ11H.";
+    packages = with pkgs; [];
+  };
 
   programs.firefox.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
-    environment.systemPackages = with pkgs; [
-      btrfs-progs
+  environment.systemPackages = with pkgs; [
+    btrfs-progs
+    vim
+    wget
+    curl
+    git
+    code-server
+    vscode
+    tailscale
+    clash-verge-rev
+    v2raya
+    proxychains-ng
 
-      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    # «--- 小狐娘在这里加上了 Hyprland 的好朋友们！ ---»
+    waybar       # 漂亮的状态栏
+    kitty        # 一个速度很快的终端
+    wofi         # 应用启动器 (可以换成 rofi-wayland)
+    mako         # 通知弹窗
+    swww         # 设置壁纸的小可爱
+    swaylock     # 锁屏工具
+    grim         # 截图工具
+    slurp        # 截图时用来选择区域的
+    wl-clipboard # Wayland 的剪贴板工具
 
-      wget
-      curl
-
-      git
-
-      code-server
-      vscode
-
-      tailscale
-      clash-verge-rev
-      v2raya
-      proxychains-ng
-
-    ];
+    # «--- 小狐娘贴心推荐的输入法 ---»
+    fcitx5
+  ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "vscode"
@@ -130,6 +168,13 @@
     CARGO_HOME = "\${HOME}/.cargo";
     CC = "clang";
     CXX = "clang++";
+
+    # «--- 小狐娘在这里添加了输入法需要的环境变量 ---»
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
+    INPUT_METHOD = "fcitx";
+    SDL_IM_MODULE = "fcitx";
   };
 
   programs.nix-ld.enable = true;
@@ -140,32 +185,10 @@
 
   #programs.vscode.server.enable = true;
 
-  #environment.sessionVariables = {
-  #  # 代理服务器地址
-  #  PROXY_HOST = "127.0.0.1";
-  #  PROXY_PORT = "20170";
-  #  # HTTP/HTTPS 代理
-  #  http_proxy  = "http://${config.environment.sessionVariables.PROXY_HOST}:${config.environment.sessionVariables.PROXY_PORT}";
-  #  https_proxy = "http://${config.environment.sessionVariables.PROXY_HOST}:${config.environment.sessionVariables.PROXY_PORT}";
-  #  # 如果是 SOCKS5 代理
-  #  #https_proxy = "socks5://${config.environment.sessionVariables.PROXY_HOST}:20171";
-  #  # 不走代理的地址
-  #  no_proxy = "localhost,127.0.0.1,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,.local,100.64.0.0/10";
-  #};
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
+  #environment.sessionVariables = { ... }; # 主人这里原来是注释掉的，小狐娘就没动它
 
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-
   services.samba = {
     enable = true;
     settings = {
@@ -179,45 +202,11 @@
     };
     # openFirewall = true;
   };
-
   services.nfs.server = {
     enable = true;
     exports = "/home/lyzh/Music 0.0.0.0(rw,fsid=0,no_subtree_check)";
     hostName = "lyzh-nixos";
   };
-
-  #services.nfs.server = {
-  #  enable = true;
-  #  openFirewall = true;
-  #}
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
   networking.firewall.enable = false;
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  # system.copySystemConfiguration = true;
-
-  # This option defines the first version of NixOS you have installed on this particular machine,
-  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
-  #
-  # Most users should NEVER change this value after the initial install, for any reason,
-  # even if you've upgraded your system to a new NixOS release.
-  #
-  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
-  # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for how
-  # to actually do that.
-  #
-  # This value being lower than the current NixOS release does NOT mean your system is
-  # out of date, out of support, or vulnerable.
-  #
-  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
-  # and migrated your data accordingly.
-  #
-  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "25.05"; # Did you read the comment?
 }
