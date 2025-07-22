@@ -14,10 +14,10 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  nix.gc = {
-    automatic = true;
-    options = "--delete-older-than 30d";
-  };
+  # nix.gc = {
+  #   automatic = true;
+  #   options = "--delete-older-than 30d";
+  # };
   system.defaults = {
     NSGlobalDomain.AppleShowAllExtensions = true;
     NSGlobalDomain.AppleShowAllFiles = true;
