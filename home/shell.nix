@@ -18,10 +18,10 @@
     jq
     fzf
     bat
-    tailscale
     neofetch
     dust
     tmux
+    coreutils
   ];
 
   programs.git = {

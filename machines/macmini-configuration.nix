@@ -12,25 +12,11 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   environment.systemPackages = with pkgs; [
-    the-unarchiver
-
-    raycast           # 新一代应用启动器
-    rectangle         # 开源窗口管理
-
-    iterm2
-    zed-editor
-    obsidian
-
-    firefox
-    discord
-    spotify
-    transmission_4-gtk
-    mumble
+    tailscale
   ];
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # nix.gc = {
     # automatic = true;
     # options = "--delete-older-than 30d";
