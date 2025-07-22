@@ -46,8 +46,8 @@
   time.timeZone = "Asia/Shanghai";
 
   # Configure network proxy if necessary
-  networking.proxy.default = "http://localhost:20171";
-  networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # networking.proxy.default = "http://localhost:20171";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
   # i18n.defaultLocale = "en_US.UTF-8";
@@ -97,7 +97,7 @@
       packages = with pkgs; [];
     };
 
-  # programs.firefox.enable = true;
+  programs.firefox.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
