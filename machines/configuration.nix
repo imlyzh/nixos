@@ -72,29 +72,6 @@
       jetbrains-mono
     ];
 
-  # 简单配置一下 fontconfig 字体顺序，以免 fallback 到不想要的字体
-  fontconfig = {
-      defaultFonts = {
-        emoji = [ "Noto Color Emoji" ];
-        monospace = [
-          "Noto Sans Mono CJK SC"
-          "Sarasa Mono SC"
-          "DejaVu Sans Mono"
-          "Fira Code"
-        ];
-        sansSerif = [
-          "Noto Sans CJK SC"
-          "Source Han Sans SC"
-          "DejaVu Sans"
-        ];
-        serif = [
-          "Noto Serif CJK SC"
-          "Source Han Serif SC"
-          "DejaVu Serif"
-        ];
-      };
-  };
-
   # --- 小狐娘在这里做了大改造哦！ ---
   # 1. 我们不再需要 Xorg 服务和 GDM 啦，Sway 会自己处理好一切
   # services.xserver.enable = true; # 注释掉
