@@ -71,7 +71,7 @@
       #  power_no_setsid = true;
       #  remember_user_session = true;
       #};
-      default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd ${pkgs.niri}/bin/niri";
+      default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd niri";
     };
   };
 
