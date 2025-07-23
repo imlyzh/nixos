@@ -27,3 +27,9 @@ home-manager switch --flake .#linux
 ```sh
 home-manager switch --flake .#mac
 ```
+
+## remote push and build
+
+```sh
+nix run .#deploy .#lyzh-nixos-laptop -- --remote-build
+```

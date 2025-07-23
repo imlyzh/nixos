@@ -3,7 +3,7 @@ input {
         xkb {
             layout "us"
             // variant "altgr-intl"
-            options "ctrl:nocaps"
+            options "caps:ctrl_modifier"
         }
     }
 }
