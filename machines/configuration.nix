@@ -151,6 +151,15 @@
     packages = with pkgs; [];
   };
 
+  security.sudo = {
+    # 我们保留这一条：属于 wheel 组的用户不需要密码
+    wheelNeedsPassword = false;
+    # 我们新增这一条：允许在非交互式终端（比如 deploy-rs）里使用 sudo
+    extraConfig = ''
+      Defaults !requiretty
+    '';
+  };
+
   environment.systemPackages = with pkgs; [
     btrfs-progs
 
@@ -196,7 +205,7 @@
     proxychains-ng
   ];
 
-    programs.firefox.enable = true;
+  programs.firefox.enable = true;
 
   programs.kdeconnect.enable = true;
 

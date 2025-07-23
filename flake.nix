@@ -7,23 +7,44 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # nix darwin
     nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    # rust
+    flake-utils.url = "github:numtide/flake-utils";
+
+    deploy-rs.url = "github:serokell/deploy-rs";
+
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin, rust-overlay, deploy-rs, ... }@inputs:
-    {
+  outputs = { self, nixpkgs, home-manager, nix-darwin, rust-overlay, deploy-rs, flake-utils, ... }@inputs:
+    flake-utils.lib.eachDefaultSystem (system: {
+      apps.deploy = deploy-rs.apps.${system}.default;
+    }) // {
+      deploy = {
+        nodes = {
+          "lyzh-nixos-laptop" = {
+            hostname = "lyzh-nixos";
+            sshUser = "lyzh";
+            useSudo = true;
+            # buildOnTarget = true;
+            # magicRollback = false;
+            profiles = {
+              system = {
+                path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations."lyzh-nixos-laptop";
+              };
+            };
+          };
+        };
+      };
+
+      # 所有系统配置都放在这里，它们不依赖于当前用的是什么电脑
       nixosConfigurations = {
         "lyzh-nixos-laptop" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux"; # 明确指定目标系统
           specialArgs = { inherit inputs; };
           modules = [
             ./machines/configuration.nix
@@ -31,16 +52,10 @@
               nixpkgs.overlays = [ rust-overlay.overlays.default ];
               environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
             })
-            ];
+          ];
         };
       };
-      deploy.nodes."lyzh-nixos-laptop" = {
-        hostname = "lyzh-nixos";
-        profiles.system = {
-          user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations."lyzh-nixos-laptop";
-        };
-      };
+
       darwinConfigurations = {
         "macbook" = nix-darwin.lib.darwinSystem {
           system = "aarch64-darwin";
@@ -53,8 +68,8 @@
               };
             }
             ({ pkgs, ... }: {
-            nixpkgs.overlays = [ rust-overlay.overlays.default ];
-            environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+              nixpkgs.overlays = [ rust-overlay.overlays.default ];
+              environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
             })
           ];
           specialArgs = { inherit inputs; };
@@ -70,8 +85,8 @@
               };
             }
             ({ pkgs, ... }: {
-            nixpkgs.overlays = [ rust-overlay.overlays.default ];
-            environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+              nixpkgs.overlays = [ rust-overlay.overlays.default ];
+              environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
             })
           ];
           specialArgs = { inherit inputs; };
@@ -80,7 +95,6 @@
 
       homeConfigurations = {
         "linux" = home-manager.lib.homeManagerConfiguration rec {
-          # pkgs = nixpkgs.legacyPackages.x86_64-linux;
           extraSpecialArgs = { inherit inputs; };
           modules = [
             ./home/home.nix
@@ -94,7 +108,6 @@
         };
 
         "mac" = home-manager.lib.homeManagerConfiguration {
-          # pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           extraSpecialArgs = { inherit inputs; };
           modules = [
             ./home/darwin-home.nix
