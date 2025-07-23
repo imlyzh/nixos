@@ -64,6 +64,40 @@
     };
   };
 
+  fonts.packages = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      sarasa-gothic  #更纱黑体
+      source-code-pro
+      hack-font
+      fira-code
+      jetbrains-mono
+    ];
+
+  # 简单配置一下 fontconfig 字体顺序，以免 fallback 到不想要的字体
+  # fontconfig = {
+  #     defaultFonts = {
+  #       emoji = [ "Noto Color Emoji" ];
+  #       monospace = [
+  #         "Noto Sans Mono CJK SC"
+  #         "Sarasa Mono SC"
+  #         "DejaVu Sans Mono"
+  #         "Fira Code"
+  #       ];
+  #       sansSerif = [
+  #         "Noto Sans CJK SC"
+  #         "Source Han Sans SC"
+  #         "DejaVu Sans"
+  #       ];
+  #       serif = [
+  #         "Noto Serif CJK SC"
+  #         "Source Han Serif SC"
+  #         "DejaVu Serif"
+  #       ];
+  #     };
+  # };
+
   environment.variables = {
     RUSTUP_HOME = "\${HOME}/.rustup";
     CARGO_HOME = "\${HOME}/.cargo";

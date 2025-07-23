@@ -46,11 +46,53 @@
 
   i18n.inputMethod = {
     enable = true;
-    type = "fcitx5";
-    fcitx5.addons = with pkgs; [
-      fcitx5-chinese-addons
-      fcitx5-gtk
+    # type = "fcitx5";
+    # fcitx.engines = with pkgs.fcitx-engines; [ rime ];
+    # fcitx5.enableRimeData= true;
+    # fcitx5.addons = with pkgs; [
+    #   fcitx5-rime
+    #   # fcitx5-chinese-addons
+    #   # fcitx5-gtk
+    # ];
+    type = "ibus";
+    ibus.engines = with pkgs.ibus-engines; [
+      libpinyin
+      rime
     ];
+  };
+
+  fonts.packages = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      sarasa-gothic  #更纱黑体
+      source-code-pro
+      hack-font
+      fira-code
+      jetbrains-mono
+    ];
+
+  # 简单配置一下 fontconfig 字体顺序，以免 fallback 到不想要的字体
+  fontconfig = {
+      defaultFonts = {
+        emoji = [ "Noto Color Emoji" ];
+        monospace = [
+          "Noto Sans Mono CJK SC"
+          "Sarasa Mono SC"
+          "DejaVu Sans Mono"
+          "Fira Code"
+        ];
+        sansSerif = [
+          "Noto Sans CJK SC"
+          "Source Han Sans SC"
+          "DejaVu Sans"
+        ];
+        serif = [
+          "Noto Serif CJK SC"
+          "Source Han Serif SC"
+          "DejaVu Serif"
+        ];
+      };
   };
 
   # --- 小狐娘在这里做了大改造哦！ ---
@@ -71,43 +113,26 @@
       #  power_no_setsid = true;
       #  remember_user_session = true;
       #};
-      default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd niri";
+      default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --remember --remember-session --cmd niri";
     };
   };
 
   # 3. 这是 Sway 的魔法配置区！(当前启用)
-  # programs.sway = {
-  #   enable = true;
-  #   wrapperFeatures.gtk = true;
-  # };
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+    extraPackages = with pkgs; [
+      autotiling-rs
+    ];
+  };
 
-  # 4. 这是 Niri 的设计图纸！(已注释，随时可以启用)
   programs.niri.enable = true;
 
-  # wayland.windowManager.sway = {
-  #   enable = true;
-  #   wrapperFeatures.gtk = true; # Fixes common issues with GTK 3 apps
-  #   config = rec {
-  #     modifier = "Mod4";
-  #     # Use kitty as default terminal
-  #     terminal = "kitty";
-  #     startup = [
-  #       # Launch Firefox on start
-  #       {command = "firefox";}
-  #     ];
-  #   };
-  # };
-
-  # programs.alacritty.enable = true; # Super+T in the default setting (terminal)
-  # programs.fuzzel.enable = true; # Super+D in the default setting (app launcher)
-  # programs.swaylock.enable = true; # Super+Alt+L in the default setting (screen locker)
   programs.waybar.enable = true; # launch on startup in the default setting (bar)
-  # services.mako.enable = true; # notification daemon
-  # services.swayidle.enable = true; # idle management daemon
   services.gnome.gnome-keyring.enable = true; # secret service
   # services.polkit-gnome.enable = true; # polkit
   # security.polkit.enable = true; # polkit
-  #security.pam.services.greetd.startGnomeKeyring = true;
+  security.soteria.enable = true; # polkit agent
 
   # 5. Wayland 世界的“胶水”程序，非常重要！
   xdg.portal = {
@@ -126,9 +151,29 @@
     alsa.support32Bit = true;
     jack.enable = true;
   };
+  # 色彩配置服务
+  services.colord.enable = true;
+
+  # 地理位置服务
+  services.geoclue2.enable = true;
 
   services.tailscale.enable = true;
   services.v2raya.enable = true;
+
+  services.gvfs.enable = true; # 磁盘挂载
+  services.avizo.enable = true;
+  services.swaync.enable = true;
+  services.kanshi.enable = true;
+  services.wpaperd = {
+    enable = true;
+    settings = {
+      default = {
+        duration = "30m";
+        mode = "center";
+      };
+      any.path = "~/Pictures/Wallpapers";
+    };
+  };
 
   users.users.lyzh = {
     isNormalUser = true;
@@ -137,8 +182,6 @@
     hashedPassword = "$6$3EPkfBlo6DmngTcl$fxPkkvpjjSyAniQoZ2roAGCvgKXG51e824SDEr3FtMXX.E4h3qIxsNMLI6d0KZeAvLQrtgUkbu4m1dLeYJ11H.";
     packages = with pkgs; [];
   };
-
-  programs.firefox.enable = true;
 
   environment.systemPackages = with pkgs; [
     btrfs-progs
@@ -181,10 +224,29 @@
     proxychains-ng
   ];
 
+  programs.firefox.enable = true;
+
+  programs.kdeconnect.enable = true;
+
+  # kde 磁盘管理软件，仅仅添加到 systemPackages 是用不了，需要 suid 提权
+  programs.partition-manager.enable = true;
+
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-volman
+      thunar-archive-plugin
+    ];
+  };
+
+  # 压缩解压
+  programs.file-roller.enable = true;
+
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "vscode"
   ];
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.variables = {
     RUSTUP_HOME = "\${HOME}/.rustup";
     CARGO_HOME = "\${HOME}/.cargo";

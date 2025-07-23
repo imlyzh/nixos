@@ -21,4 +21,11 @@
   };
 
   programs.home-manager.enable = true;
+
+  home.file.".config/Code/argv.json".text = ''
+    {
+      "enable-features": "UseOzonePlatform",
+      "ozone-platform": "wayland"
+    }
+  '';
 }
