@@ -108,10 +108,10 @@
   # programs.fuzzel.enable = true; # Super+D in the default setting (app launcher)
   # programs.swaylock.enable = true; # Super+Alt+L in the default setting (screen locker)
   programs.waybar.enable = true; # launch on startup in the default setting (bar)
-  services.mako.enable = true; # notification daemon
-  services.swayidle.enable = true; # idle management daemon
+  # services.mako.enable = true; # notification daemon
+  # services.swayidle.enable = true; # idle management daemon
   services.gnome.gnome-keyring.enable = true; # secret service
-  services.polkit-gnome.enable = true; # polkit
+  # services.polkit-gnome.enable = true; # polkit
   security.polkit.enable = true; # polkit
   security.pam.services.swaylock = {};
 
@@ -170,7 +170,7 @@
     mako
     swaylock # 锁屏工具
     swayidle # 空闲管理，可以配合锁屏用
-    polkit-gnome
+    #polkit-gnome
     polkit
     # swww # Sway 可以用 swaybg，但 swww 也很棒！
     swaybg
