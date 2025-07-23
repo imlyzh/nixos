@@ -7,16 +7,16 @@ input {
         }
     }
 }
+
+binds {
+    "Print" { spawn "grim ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png"; }
+    "Shift+Print" { spawn "grim -g \"$(slurp)\" ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png"; }
+
+}
+
 spawn-at-startup "mako"
 spawn-at-startup "waybar"
 spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "swaylock -f" "before-sleep" "swaylock -f"
-
-bind "Print" {
-    spawn "grim ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png";
-}
-bind "Shift+Print" {
-    spawn "grim -g \"$(slurp)\" ~/Pictures/screenshot-$(date +'%Y%m%d-%H%M%S').png";
-}
 
 environment {
     DISPLAY ":0"
