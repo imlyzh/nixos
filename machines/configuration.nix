@@ -31,7 +31,7 @@
 
   time.timeZone = "Asia/Shanghai";
 
-  i18n.defaultLocale = "zh_CN.UTF-8";
+  i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "zh_CN.UTF-8";
     LC_IDENTIFICATION = "zh_CN.UTF-8";
@@ -58,42 +58,31 @@
   # services.xserver.enable = true; # 注释掉
   # services.displayManager.gdm.enable = true; # 注释掉
   # programs.hyprland.enable = true; # 把 Hyprland 也收起来
-  # services.gnome.gnome-keyring.enable = true;
 
   # 2. 换上轻巧漂亮的 greetd 登录管理器！
   services.greetd = {
     enable = true;
-    package = pkgs.greetd.tuigreet;
-    # wlgreet 是 greetd 的 Wayland 界面，很搭哦
-    # wayland.enable = true;
-    # settings.default_session.command = ''
-    # ${pkgs.niri}/bin/niri --wlgreet "${pkgs.greetd.wlgreet}/bin/wlgreet"
-    # '';
-    settings.default_session.command = "${pkgs.niri}/bin/niri";
+    # package = pkgs.greetd.tuigreet;
+    settings = {
+      #tuigreet = {
+      #  kb_command = "F10";
+      #  kb_session = "F11";
+      #  kb_power = "F12";
+      #  power_no_setsid = true;
+      #  remember_user_session = true;
+      #};
+      default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd ${pkgs.niri}/bin/niri";
+    };
   };
 
   # 3. 这是 Sway 的魔法配置区！(当前启用)
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-  };
+  # programs.sway = {
+  #   enable = true;
+  #   wrapperFeatures.gtk = true;
+  # };
 
   # 4. 这是 Niri 的设计图纸！(已注释，随时可以启用)
-  programs.niri = {
-    enable = true;
-    # 小狐娘也给 Niri 准备了基础配置
-    # settings = {
-    #   "preference" = {
-    #     terminal = "${pkgs.kitty}/bin/kitty";
-    #   };
-    #   "keybinding" = [
-    #     {
-    #       keys = [ "Super" "d" ];
-    #       command = [ "wofi" "--show" "drun" ];
-    #     }
-    #   ];
-    # };
-  };
+  programs.niri.enable = true;
 
   # wayland.windowManager.sway = {
   #   enable = true;
@@ -117,8 +106,8 @@
   # services.swayidle.enable = true; # idle management daemon
   services.gnome.gnome-keyring.enable = true; # secret service
   # services.polkit-gnome.enable = true; # polkit
-  security.polkit.enable = true; # polkit
-  security.pam.services.swaylock = {};
+  # security.polkit.enable = true; # polkit
+  #security.pam.services.greetd.startGnomeKeyring = true;
 
   # 5. Wayland 世界的“胶水”程序，非常重要！
   xdg.portal = {
@@ -154,6 +143,7 @@
   environment.systemPackages = with pkgs; [
     btrfs-progs
 
+    greetd.tuigreet
     sway
     swayfx
     niri
