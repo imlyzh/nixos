@@ -14,6 +14,7 @@
     clash-verge-rev
     v2raya
     podman
+    zsh
   ];
 
   programs.direnv = {
@@ -22,6 +23,11 @@
 
   programs.home-manager.enable = true;
 
+  #programs.zsh = {
+  #  shellAliase = {
+  #    code = "code --enable-features=UseOZonePlatform --ozone-platform=wayland";
+  #  };
+  #};
   home.file.".config/Code/argv.json".text = ''
     {
       "enable-features": "UseOzonePlatform",

@@ -121,6 +121,10 @@
 
   services.xserver.xkb.options = "caps:escape";
 
+  # sound.enable = true;
+  services.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+
   services.pipewire = {
     enable = true;
     pulse.enable = true;
@@ -141,7 +145,7 @@
 
   users.users.lyzh = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" ];
     uid = 1001;
     hashedPassword = "$6$3EPkfBlo6DmngTcl$fxPkkvpjjSyAniQoZ2roAGCvgKXG51e824SDEr3FtMXX.E4h3qIxsNMLI6d0KZeAvLQrtgUkbu4m1dLeYJ11H.";
     packages = with pkgs; [];
@@ -150,6 +154,7 @@
   environment.systemPackages = with pkgs; [
     btrfs-progs
 
+    xwayland-satellite
     greetd.tuigreet
     sway
     swayfx
@@ -173,13 +178,16 @@
     grim
     slurp
     wl-clipboard
+    pavucontrol
 
-    fcitx5
+    #fcitx5
+    ibus
 
     vim
     wget
     curl
     git
+    firefox
     code-server
     vscode
     tailscale
@@ -188,7 +196,7 @@
     proxychains-ng
   ];
 
-  programs.firefox.enable = true;
+    programs.firefox.enable = true;
 
   programs.kdeconnect.enable = true;
 
