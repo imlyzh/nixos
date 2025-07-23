@@ -109,7 +109,6 @@
   programs.swaylock.enable = true; # Super+Alt+L in the default setting (screen locker)
   programs.waybar.enable = true; # launch on startup in the default setting (bar)
   services.mako.enable = true; # notification daemon
-  services.swaylock.enable = true;
   services.swayidle.enable = true; # idle management daemon
   services.gnome.gnome-keyring.enable = true; # secret service
   services.polkit-gnome.enable = true; # polkit
