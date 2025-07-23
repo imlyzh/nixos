@@ -77,17 +77,17 @@
   programs.niri = {
     enable = true;
     # 小狐娘也给 Niri 准备了基础配置
-    settings = {
-      "preference" = {
-        terminal = "${pkgs.kitty}/bin/kitty";
-      };
-      "keybinding" = [
-        {
-          keys = [ "Super" "d" ];
-          command = [ "wofi" "--show" "drun" ];
-        }
-      ];
-    };
+    # settings = {
+    #   "preference" = {
+    #     terminal = "${pkgs.kitty}/bin/kitty";
+    #   };
+    #   "keybinding" = [
+    #     {
+    #       keys = [ "Super" "d" ];
+    #       command = [ "wofi" "--show" "drun" ];
+    #     }
+    #   ];
+    # };
   };
 
   # wayland.windowManager.sway = {
@@ -104,8 +104,8 @@
   #   };
   # };
 
-  programs.alacritty.enable = true; # Super+T in the default setting (terminal)
-  programs.fuzzel.enable = true; # Super+D in the default setting (app launcher)
+  # programs.alacritty.enable = true; # Super+T in the default setting (terminal)
+  # programs.fuzzel.enable = true; # Super+D in the default setting (app launcher)
   programs.swaylock.enable = true; # Super+Alt+L in the default setting (screen locker)
   programs.waybar.enable = true; # launch on startup in the default setting (bar)
   programs.swaybg.enable = true;
