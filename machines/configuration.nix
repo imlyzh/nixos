@@ -65,7 +65,13 @@
     enable = true;
     # wlgreet 是 greetd 的 Wayland 界面，很搭哦
     package = pkgs.greetd.tuigreet;
-    settings.default_session.command = "${pkgs.greetd.wlgreet}/bin/tuigreet --command niri";
+    # settings.default_session.command = "${pkgs.greetd.wlgreet}/bin/tuigreet --command niri";
+
+    # wayland.enable = true;
+    # settings.default_session.command = ''
+    # ${pkgs.niri}/bin/niri --wlgreet "${pkgs.greetd.wlgreet}/bin/wlgreet"
+    # '';
+    settings.default_session.command = "niri";
   };
 
   # 3. 这是 Sway 的魔法配置区！(当前启用)
@@ -160,6 +166,8 @@
     v2raya
     proxychains-ng
 
+    sway
+    niri
     # Hyprland 的朋友们很多和 Sway 是通用的！
     kitty
     wofi
