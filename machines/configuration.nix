@@ -220,6 +220,7 @@
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.variables = {
+    TERMINAL = "kitty";
     RUSTUP_HOME = "\${HOME}/.rustup";
     CARGO_HOME = "\${HOME}/.cargo";
     CC = "clang";

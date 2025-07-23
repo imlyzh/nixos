@@ -16,9 +16,11 @@
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    deploy-rs.url = "github:serokell/deploy-rs";
   };
 
-  outputs = { self, nixpkgs, home-manager, nix-darwin, rust-overlay, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nix-darwin, rust-overlay, deploy-rs, ... }@inputs:
     {
       nixosConfigurations = {
         "lyzh-nixos-laptop" = nixpkgs.lib.nixosSystem {
@@ -30,6 +32,13 @@
               environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
             })
             ];
+        };
+      };
+      deploy.nodes."lyzh-nixos-laptop" = {
+        hostname = "lyzh-nixos";
+        profiles.system = {
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations."lyzh-nixos-laptop";
         };
       };
       darwinConfigurations = {
