@@ -63,15 +63,13 @@
   # 2. 换上轻巧漂亮的 greetd 登录管理器！
   services.greetd = {
     enable = true;
-    # wlgreet 是 greetd 的 Wayland 界面，很搭哦
     package = pkgs.greetd.tuigreet;
-    # settings.default_session.command = "${pkgs.greetd.wlgreet}/bin/tuigreet --command niri";
-
+    # wlgreet 是 greetd 的 Wayland 界面，很搭哦
     # wayland.enable = true;
     # settings.default_session.command = ''
     # ${pkgs.niri}/bin/niri --wlgreet "${pkgs.greetd.wlgreet}/bin/wlgreet"
     # '';
-    settings.default_session.command = "niri";
+    settings.default_session.command = "${pkgs.niri}/bin/niri";
   };
 
   # 3. 这是 Sway 的魔法配置区！(当前启用)
@@ -155,18 +153,9 @@
 
   environment.systemPackages = with pkgs; [
     btrfs-progs
-    vim
-    wget
-    curl
-    git
-    code-server
-    vscode
-    tailscale
-    clash-verge-rev
-    v2raya
-    proxychains-ng
 
     sway
+    swayfx
     niri
     # Hyprland 的朋友们很多和 Sway 是通用的！
     kitty
@@ -189,6 +178,17 @@
     wl-clipboard
 
     fcitx5
+
+    vim
+    wget
+    curl
+    git
+    code-server
+    vscode
+    tailscale
+    clash-verge-rev
+    v2raya
+    proxychains-ng
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
