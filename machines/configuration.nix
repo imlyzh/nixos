@@ -64,7 +64,8 @@
   services.greetd = {
     enable = true;
     # wlgreet 是 greetd 的 Wayland 界面，很搭哦
-    settings.default_session.command = "${pkgs.greetd.wlgreet}/bin/wlgreet --command niri";
+    package = pkgs.greetd.tuigreet;
+    settings.default_session.command = "${pkgs.greetd.wlgreet}/bin/tuigreet --command niri";
   };
 
   # 3. 这是 Sway 的魔法配置区！(当前启用)
