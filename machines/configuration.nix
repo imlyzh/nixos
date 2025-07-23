@@ -138,19 +138,6 @@
   services.v2raya.enable = true;
 
   services.gvfs.enable = true; # 磁盘挂载
-  services.avizo.enable = true;
-  services.swaync.enable = true;
-  services.kanshi.enable = true;
-  services.wpaperd = {
-    enable = true;
-    settings = {
-      default = {
-        duration = "30m";
-        mode = "center";
-      };
-      any.path = "~/Pictures/Wallpapers";
-    };
-  };
 
   users.users.lyzh = {
     isNormalUser = true;
@@ -231,11 +218,11 @@
     CXX = "clang++";
 
     # 输入法环境变量，非常重要！
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx";
-    INPUT_METHOD = "fcitx";
-    SDL_IM_MODULE = "fcitx";
+    GTK_IM_MODULE = "ibus";
+    QT_IM_MODULE = "ibus";
+    XMODIFIERS = "@im=ibus";
+    INPUT_METHOD = "ibus";
+    SDL_IM_MODULE = "ibus";
   };
 
   programs.nix-ld.enable = true;
