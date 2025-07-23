@@ -28,13 +28,14 @@
   #    code = "code --enable-features=UseOZonePlatform --ozone-platform=wayland";
   #  };
   #};
-  xdg.configFile."niri/config.kdl" = {
-    source = ../dotfiles/niri.kdl;
+  home.file = {
+    ".config/niri/config.kdl".source = ../dotfiles/.config/niri/config.kdl;
+    ".config/Code/argv.json".source = ../dotfiles/.config/Code/argv.json;
   };
-  home.file.".config/Code/argv.json".text = ''
-    {
-      "enable-features": "UseOzonePlatform",
-      "ozone-platform": "wayland"
-    }
-  '';
+  #home.file.".config/Code/argv.json".text = ''
+  #  {
+  #    "enable-features": "UseOzonePlatform",
+  #    "ozone-platform": "wayland"
+  #  }
+  #'';
 }
