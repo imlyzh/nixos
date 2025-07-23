@@ -48,6 +48,14 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./machines/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.lyzh = {
+                imports = [ ./home/home.nix ./home/shell.nix ./home/dev.nix ];
+              };
+            }
             ({ pkgs, ... }: {
               nixpkgs.overlays = [ rust-overlay.overlays.default ];
               environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];

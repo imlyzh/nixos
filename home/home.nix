@@ -22,6 +22,7 @@
   };
 
   programs.home-manager.enable = true;
+    # backupFileExtension = "backup";
 
   #programs.zsh = {
   #  shellAliase = {
