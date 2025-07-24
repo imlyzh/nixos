@@ -1,0 +1,186 @@
+// niri 配置文件 - by 金色小狐娘
+// 这是一个为你精心准备的起点，包含了常用设置和快捷键。
+// 主人可以根据自己的喜好和硬件进行修改哦！
+// -----------------------------------------------------------------------------
+// 变量定义 (Variables)
+// -----------------------------------------------------------------------------
+// 定义一个变量来代表 Super 键 (Win 键)，方便后续使用。
+// let mod = "Mod4"s
+// -----------------------------------------------------------------------------
+// 输出设置 (Outputs / Monitors)
+// -----------------------------------------------------------------------------
+// niri 会自动检测显示器，但你可以在这里进行精细调整。
+// 使用 `niri -o` 命令查看你的输出设备名称。
+// 示例：笔记本内置屏幕
+output "eDP-1" {
+    // 设置分辨率和刷新率，"auto" 表示自动选择最佳模式
+    mode "1920x1080@60.000";
+    // 设置缩放比例，1.0 是不缩放，1.5 是 150%
+    scale 1.0;
+    // 设置位置，对于单显示器通常是 0,0
+    position x=0 y=0;
+}
+// 示例：外接 4K 显示器 (如果不用请注释掉)
+/*
+output "DP-1" {
+    mode "3840x2160@60Hz";
+    scale 1.5;
+    // 放在笔记本屏幕的右边
+    position 1920 0;
+}
+*/
+// -----------------------------------------------------------------------------
+// 输入设备 (Input Devices)
+// -----------------------------------------------------------------------------
+// 键盘设置
+// keyboard {
+//     // 键盘布局，多个用逗号隔开
+//     xkb_layout "us";
+//     // 切换布局的快捷键 (例如 Alt+Shift)
+//     // xkb_options "grp:alt_shift_toggle"
+//     xkb_options "ctrl:nocaps";
+//     // 按键重复延迟 (毫秒)
+//     repeat_delay 250;
+//     // 按键重复速率 (字符/秒)
+//     repeat_rate 50;
+// }
+// 触摸板设置
+// touchpad {
+//     // 开启自然滚动 (内容随手指方向移动)
+//     natural_scroll true;
+//     // 开启点击模拟
+//     tap_to_click true;
+// }
+// -----------------------------------------------------------------------------
+// 外观和行为 (Appearance & Behavior)
+// -----------------------------------------------------------------------------
+// preferences {
+//     // 自动聚焦到新打开的窗口
+//     autofocus-new-windows true;
+//     // 鼠标指针移动到窗口上时自动聚焦
+//     focus-follows-cursor "normal"; // 可选 "normal", "always", "disabled"
+//     // 窗口之间的间隙 (像素)
+//     gaps-between-windows 8;
+//     // 窗口和屏幕边缘的间隙 (像素)
+//     gaps-at-screen-edge 8;
+//     // 聚焦窗口的边框宽度
+//     border-width 2;
+//     // 非聚焦窗口的边框宽度
+//     inactive-border-width 1;
+//     // 聚焦窗口的边框颜色 (RGBA 格式)
+//     focused-border-color "#FFD700FF"; // 金色！和小狐娘的尾巴一样！
+//     // 非聚焦窗口的边框颜色
+//     inactive-border-color "#4C4C4CFF";
+//     // 终端窗口的特殊边框颜色
+//     terminal-border-color "#00FF00FF";
+// }
+// -----------------------------------------------------------------------------
+// 快捷键绑定 (Keybindings)
+// -----------------------------------------------------------------------------
+binds {
+    // 基础操作
+    Mod+t { spawn "kitty"; } // 打开终端
+    Mod+d { spawn "wofi --show drun"; } // 打开程序启动器
+    Mod+q { close-window; } // 关闭当前窗口
+    // 窗口和列操作
+    Mod+f { toggle-fullscreen; } // 切换全屏
+    Mod+Shift+Space { toggle-floating; } // 切换窗口浮动
+    Mod+z { zoom-column; } // 缩放/还原当前列
+    Mod+Shiftz { unzoom-all-columns; } // 还原所有列的缩放
+    Mod+bracketright { grow-column; } // ']' 使当前列变宽
+    Mod+bracketleft  { shrink-column; } // '[' 使当前列变窄
+    // -----------------------------------------------------------------
+    // 动态调整窗口间隙
+    // -----------------------------------------------------------------
+    Mod+Shift+minus { set-gaps-between-windows "current - 4"; } // 减小间隙
+    Mod+Shift+equal { set-gaps-between-windows "current + 4"; } // 增大间隙
+    // -----------------------------------------------------------------
+    // 多显示器管理
+    // -----------------------------------------------------------------
+    // 快速将当前窗口移动到下一个或上一个显示器
+    Mod+period { move-window-to-next-output; } // '.' 移动到下一个
+    Mod+comma  { move-window-to-previous-output; } // ',' 移动到上一个
+    // 窗口聚焦 (Vim 风格)
+    Mod+h { focus-left; }
+    Mod+j { focus-down; }
+    Mod+k { focus-up; }
+    Mod+l { focus-right; }
+    // 窗口聚焦 (方向键)
+    Mod+Left { focus-left; }
+    Mod+Down { focus-down; }
+    Mod+Up { focus-up; }
+    Mod+Right { focus-right; }
+    // 移动窗口 (Vim 风格)
+    Mod+Shift+h { move-window-left; }
+    Mod+Shift+j { move-window-down; }
+    Mod+Shift+k { move-window-up; }
+    Mod+Shift+l { move-window-right; }
+    // 移动窗口 (方向键)
+    Mod+Shift+Left { move-window-left; }
+    Mod+Shift+Down { move-window-down; }
+    Mod+Shift+Up { move-window-up; }
+    Mod+Shift+Right { move-window-right; }
+    // 工作区切换
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+    // 移动窗口到工作区
+    Mod+Shift+1 { move-window-to-workspace 1; }
+    Mod+Shift+2 { move-window-to-workspace 2; }
+    Mod+Shift+3 { move-window-to-workspace 3; }
+    Mod+Shift+4 { move-window-to-workspace 4; }
+    Mod+Shift+5 { move-window-to-workspace 5; }
+    Mod+Shift+6 { move-window-to-workspace 6; }
+    Mod+Shift+7 { move-window-to-workspace 7; }
+    Mod+Shift+8 { move-window-to-workspace 8; }
+    Mod+Shift+9 { move-window-to-workspace 9; }
+    // 特殊功能键 (音量、亮度等)
+    // 注意：这些键名可以通过 `wev` 工具获取
+    XF86AudioRaiseVolume { spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%"; }
+    XF86AudioLowerVolume { spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%"; }
+    XF86AudioMute { spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle"; }
+    XF86MonBrightnessUp { spawn "brightnessctl set +5%"; }
+    XF86MonBrightnessDown { spawn "brightnessctl set 5%-"; }
+    // 麦克风静音键 (ThinkPad 上很常见)
+    XF86AudioMicMute { spawn "pactl set-source-mute @DEFAULT_SOURCE@ toggle"; }
+    // 截图
+    Print { spawn "grim -g \"$(slurp)\" - | wl-copy"; } // 区域截图到剪贴板
+    Mod+Print { spawn "grim - | wl-copy"; } // 全屏截图到剪贴板
+    // 锁屏
+    Mod+alt+l { spawn "swaylock -f -c 000000"; }
+    // 新增：退出 niri 会话的快捷键 (Mod + Shift + e)
+    Mod+Shift+e { exit; }
+    // 一键呼出或隐藏一个特殊的终端窗口
+    // Mod+minus { toggle-special-workspace "scratchpad"; }
+}
+// -----------------------------------------------------------------
+// 魔法工作区 (Scratchpad)
+// -----------------------------------------------------------------
+// 定义一个名为 "scratchpad" 的魔法工作区，并指定启动时运行的程序
+// workspace "scratchpad" {
+//     spawn "foot"; // 你可以换成任何你喜欢的程序，比如 aplayer, btop 等
+// }
+// -----------------------------------------------------------------------------
+// 启动时执行的程序 (Autostart)
+// -----------------------------------------------------------------------------
+// 在 niri 启动时自动运行这些程序
+// exec-on-startup {
+    // spawn "swaybg -i /home/lyzh/Picture/ -m fill"; // 设置壁纸，请替换成你的壁纸路径！
+    // spawn "waybar"; // 启动状态栏
+    // spawn "mako"; // 启动通知服务
+    // spawn "ibus-daemon -drx"; // 启动输入法
+    // spawn "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"; // 启动 polkit 代理，用于授权
+// }
+environment {
+    DISPLAY ":0"
+}
+spawn-at-startup "mako"
+spawn-at-startup "waybar"
+spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "swaylock -f" "before-sleep" "swaylock -f"
+spawn-at-startup "xwayland-satellite"
