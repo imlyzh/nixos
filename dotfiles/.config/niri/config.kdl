@@ -268,7 +268,11 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
+// spawn-at-startup "waybar"
+// spawn-at-startup "mako"
+// spawn-at-startup "xwayland-satellite"
+// spawn-at-startup "swaybg -i /home/lyzh/Pictures/00181.png"
+// spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "swaylock -f" "before-sleep" "swaylock -f"
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
@@ -609,7 +613,3 @@ binds {
 environment {
     DISPLAY ":0"
 }
-spawn-at-startup "mako"
-spawn-at-startup "waybar"
-spawn-at-startup "xwayland-satellite"
-// spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "swaylock -f" "before-sleep" "swaylock -f"

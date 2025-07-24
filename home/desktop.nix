@@ -8,7 +8,7 @@ let
 
   # 定义壁纸路径和命令，这样两边可以共用
   wallpaper-path = "/home/lyzh/Pictures/00181.png"; # <-- ★★★ 把这里改成你的壁纸的绝对路径！
-  wallpaper-cmd = "swaybg -i ${wallpaper-path}";# -m fill";
+  wallpaper-cmd = "${pkgs.swaybg}/bin/swaybg -i ${wallpaper-path}";# -m fill";
 in {
   # --------------------------------------------------------------------
   # 安装需要的软件包
@@ -45,20 +45,13 @@ in {
     #fcitx5
     ibus
 
+    spotify
     firefox
     # vscode
     file-roller
   ];
 
   programs.firefox.enable = true;
-
-  # --------------------------------------------------------------------
-  # Niri 的配置
-  # --------------------------------------------------------------------
-  home.file = {
-    "./.config/niri/config.kdl".source = ../dotfiles/.config/niri/config.kdl;
-    # "./.config/waybar".source = "../dotfiles/.config/waybar";
-  };
 
   # --------------------------------------------------------------------
   # SwayFX 的配置
@@ -77,61 +70,53 @@ in {
   #   '';
   # };
 
-  # --------------------------------------------------------------------
-  # Waybar (状态栏) 的配置
-  # --------------------------------------------------------------------
-  programs.waybar = {
-    enable = true;
-    style = ''
-      * {
-        border: none;
-        font-family: "Noto Sans CJK SC", "Font Awesome 6 Free";
-        font-size: 16px;
-        min-height: 0;
-      }
-      window#waybar {
-        background: rgba(30, 30, 46, 0.85);
-        color: #cdd6f4;
-      }
-      #workspaces button.active {
-        background-color: #b48ead;
-        color: #1e1e2e;
-      }
-      #clock, #cpu, #memory, #pulseaudio, #network {
-        padding: 0 10px;
-      }
-    '';
-    settings = {
-      mainBar = {
-        layer = "top";
-        position = "top";
-        height = 35;
-        modules-left = ["sway/workspaces" "sway/mode"];
-        modules-center = ["sway/window"];
-        modules-right = ["pipewire" "network" "cpu" "memory" "clock"];
-        "clock" = { "format" = " {:%Y-%m-%d %H:%M}"; };
-        "cpu" = { "format" = " {usage}%"; };
-        "memory" = { "format" = " {}%"; };
-        "network" = { "format-wifi" = "  {essid}"; "format-disconnected" = "󰖪"; };
-        # "pulseaudio" = { "format" = "{icon} {volume}%"; "format-icons" = { "default" = ["", "", ""]; }; };
-
-        # 然后在 mainBar 里添加 pipewire 的配置
-        "pipewire" = {
-          "format" = "{icon} {volume}%";
-          "format-muted" = "󰖁 Muted"; # 静音图标
-          # "format-icons" = ["", "", ""];
-        };
-      };
-    };
-  };
-
-  programs.ghostty = {
-    enable = true;
-    settings = {};
-  };
   # programs.waybar = {
   #   enable = true;
+  #   style = ''
+  #     * {
+  #       border: none;
+  #       font-family: "Noto Sans CJK SC", "Font Awesome 6 Free";
+  #       font-size: 16px;
+  #       min-height: 0;
+  #     }
+  #     window#waybar {
+  #       background: rgba(30, 30, 46, 0.85);
+  #       color: #cdd6f4;
+  #     }
+  #     #workspaces button.active {
+  #       background-color: #b48ead;
+  #       color: #1e1e2e;
+  #     }
+  #     #clock, #cpu, #memory, #pulseaudio, #network {
+  #       padding: 0 10px;
+  #     }
+  #   '';
+  #   settings = {
+  #     mainBar = {
+  #       layer = "top";
+  #       position = "top";
+  #       height = 35;
+  #       modules-left = ["sway/workspaces" "sway/mode"];
+  #       modules-center = ["sway/window"];
+  #       modules-right = ["pipewire" "network" "cpu" "memory" "clock"];
+  #       "clock" = { "format" = " {:%Y-%m-%d %H:%M}"; };
+  #       "cpu" = { "format" = " {usage}%"; };
+  #       "memory" = { "format" = " {}%"; };
+  #       "network" = { "format-wifi" = "  {essid}"; "format-disconnected" = "󰖪"; };
+  #       # "pulseaudio" = { "format" = "{icon} {volume}%"; "format-icons" = { "default" = ["", "", ""]; }; };
+
+  #       # 然后在 mainBar 里添加 pipewire 的配置
+  #       "pipewire" = {
+  #         "format" = "{icon} {volume}%";
+  #         "format-muted" = "󰖁 Muted"; # 静音图标
+  #         "format-icons" = ["", "", ""];
+  #       };
+  #     };
+  #   };
   # };
+
+  programs.ghostty.enable = true;
+  programs.waybar.enable = true;
   systemd.user.services.swaybg = {
     Unit = {
       Description = "Sway Background";
@@ -146,6 +131,11 @@ in {
     Install = {
       WantedBy = [ "graphical-session.target" ];
     };
+  };
+
+  home.file = {
+    "./.config/niri/config.kdl".source = ../dotfiles/.config/niri/config.kdl;
+    "./.config/waybar".source = ../dotfiles/.config/waybar;
   };
 
   home.sessionVariables = {
