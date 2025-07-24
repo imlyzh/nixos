@@ -93,17 +93,18 @@
   programs.niri.enable = true;
 
   programs.waybar.enable = true; # launch on startup in the default setting (bar)
-  # services.gnome.gnome-keyring.enable = true; # secret service
+  services.gnome.gnome-keyring.enable = true; # secret service
   # services.polkit-gnome.enable = true; # polkit
-  # security.polkit.enable = true; # polkit
-  # security.soteria.enable = true; # polkit agent
+  security.polkit.enable = true; # polkit
+  security.soteria.enable = true; # polkit agent
 
   # 5. Wayland 世界的“胶水”程序，非常重要！
   xdg.portal = {
     enable = true;
-    # extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+    extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
     # 如果发现截图或文件选择有问题，可以把下面这个也打开
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "*";
   };
 
   # services.xserver.xkb.options = "caps:escape";
