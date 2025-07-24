@@ -101,9 +101,9 @@
   # 5. Wayland 世界的“胶水”程序，非常重要！
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+    # extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
     # 如果发现截图或文件选择有问题，可以把下面这个也打开
-    # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
   # services.xserver.xkb.options = "caps:escape";

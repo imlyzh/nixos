@@ -7,9 +7,8 @@ let
   my-launcher = "fuzzel";
 
   # 定义壁纸路径和命令，这样两边可以共用
-  wallpaper-path = "/home/lyzh/Pictures/000181.png"; # <-- ★★★ 把这里改成你的壁纸的绝对路径！
-  wallpaper-cmd = "swaybg -i ${wallpaper-path} -m fill";
-
+  wallpaper-path = "/home/lyzh/Pictures/00181.png"; # <-- ★★★ 把这里改成你的壁纸的绝对路径！
+  wallpaper-cmd = "swaybg -i ${wallpaper-path}";# -m fill";
 in {
   # --------------------------------------------------------------------
   # 安装需要的软件包
@@ -139,7 +138,7 @@ in {
       PartOf = "graphical-session.target";
     };
     Service = {
-      ExecStart = "${pkgs.swaybg}/bin/swaybg -i ${config.home.homeDirectory}/Pictures/00181.png -m fill";
+      ExecStart = wallpaper-cmd;
       Restart = "on-failure";
       RestartSec = "1";
       TimeoutStopSec = "5";
