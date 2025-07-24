@@ -19,7 +19,7 @@
       options = [ "subvol=@root"
         "ssd"
         "noatime"
-        "compress=zstd"
+        "compress=zstd:3"
         "autodefrag"
       ];
     };
@@ -30,7 +30,7 @@
       options = [ "subvol=@home"
         "ssd"
         "noatime"
-        "compress=zstd"
+        "compress=zstd:3"
         "autodefrag"
       ];
     };
@@ -40,8 +40,8 @@
       fsType = "btrfs";
       options = [ "subvol=@nix"
         "ssd"
-        "compress=zstd:3"
         "noatime"
+        "compress=zstd:3"
       ];
     };
 
