@@ -24,8 +24,9 @@ in {
     xwayland-satellite
     # Hyprland 的朋友们很多和 Sway 是通用的！
     kitty
+    ghostty
     ulauncher
-    wofi
+    # wofi
 
     fuzzel
     waybar
@@ -122,6 +123,29 @@ in {
           # "format-icons" = ["", "", ""];
         };
       };
+    };
+  };
+
+  programs.ghostty = {
+    enable = true;
+    settings = {};
+  };
+  # programs.waybar = {
+  #   enable = true;
+  # };
+  systemd.user.services.swaybg = {
+    Unit = {
+      Description = "Sway Background";
+      PartOf = "graphical-session.target";
+    };
+    Service = {
+      ExecStart = "${pkgs.swaybg}/bin/swaybg -i ${config.home.homeDirectory}/Pictures/00181.png -m fill";
+      Restart = "on-failure";
+      RestartSec = "1";
+      TimeoutStopSec = "5";
+    };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
     };
   };
 

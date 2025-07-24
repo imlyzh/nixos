@@ -93,10 +93,10 @@
   programs.niri.enable = true;
 
   programs.waybar.enable = true; # launch on startup in the default setting (bar)
-  services.gnome.gnome-keyring.enable = true; # secret service
+  # services.gnome.gnome-keyring.enable = true; # secret service
   # services.polkit-gnome.enable = true; # polkit
   # security.polkit.enable = true; # polkit
-  security.soteria.enable = true; # polkit agent
+  # security.soteria.enable = true; # polkit agent
 
   # 5. Wayland 世界的“胶水”程序，非常重要！
   xdg.portal = {
