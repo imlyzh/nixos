@@ -609,6 +609,7 @@ binds {
 environment {
     DISPLAY ":0"
 }
+spawn-at-startup "swaybg -i /home/lyzh/Pictures/00181.png -m fill"
 spawn-at-startup "mako"
 // spawn-at-startup "waybar"
 spawn-at-startup "swayidle" "-w" "timeout" "601" "niri msg action power-off-monitors" "timeout" "600" "swaylock -f" "before-sleep" "swaylock -f"

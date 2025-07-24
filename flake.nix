@@ -50,10 +50,10 @@
             ./machines/configuration.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.useGlobalPkgs = true;
+              # home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.lyzh = {
-                imports = [ ./home/home.nix ./home/shell.nix ./home/dev.nix ];
+                imports = [ ./home/home.nix ./home/shell.nix ./home/dev.nix ./home/desktop.nix];
               };
             }
             ({ pkgs, ... }: {

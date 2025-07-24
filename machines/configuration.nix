@@ -11,7 +11,7 @@
 
   home-manager = {
     useUserPackages = true;
-    sharedModules = [../home/home.nix ../home/dev.nix ../home/shell.nix];
+    sharedModules = [../home/home.nix ../home/dev.nix ../home/shell.nix ../home/desktop.nix];
     users.lyzh = {};
   };
 
@@ -83,26 +83,13 @@
     enable = true;
     # package = pkgs.greetd.tuigreet;
     settings = {
-      #tuigreet = {
-      #  kb_command = "F10";
-      #  kb_session = "F11";
-      #  kb_power = "F12";
-      #  power_no_setsid = true;
-      #  remember_user_session = true;
-      #};
       default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --remember --remember-session --cmd niri";
     };
   };
 
   # 3. 这是 Sway 的魔法配置区！(当前启用)
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [
-      autotiling-rs
-    ];
-  };
 
+  programs.sway.enable = true;
   programs.niri.enable = true;
 
   programs.waybar.enable = true; # launch on startup in the default setting (bar)
@@ -119,7 +106,7 @@
     # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
 
-  services.xserver.xkb.options = "caps:escape";
+  # services.xserver.xkb.options = "caps:escape";
 
   # sound.enable = true;
   services.pulseaudio.enable = false;
@@ -162,55 +149,32 @@
 
   environment.systemPackages = with pkgs; [
     btrfs-progs
-
-    xwayland-satellite
     greetd.tuigreet
-    sway
-    swayfx
-    niri
-    # Hyprland 的朋友们很多和 Sway 是通用的！
-    kitty
-    wofi
-
-    alacritty
-    fuzzel
-    swaylock
-    waybar
-    mako
-    swaylock # 锁屏工具
-    swayidle # 空闲管理，可以配合锁屏用
-    #polkit-gnome
-    polkit
-    # swww # Sway 可以用 swaybg，但 swww 也很棒！
-    swaybg
-
-    grim
-    slurp
-    wl-clipboard
-    pavucontrol
-
-    #fcitx5
-    ibus
-
     vim
     wget
     curl
     git
-    firefox
-    code-server
+
     vscode
+    code-server
+
     tailscale
     clash-verge-rev
     v2raya
     proxychains-ng
   ];
 
-  programs.firefox.enable = true;
-
-  programs.kdeconnect.enable = true;
-
   # kde 磁盘管理软件，仅仅添加到 systemPackages 是用不了，需要 suid 提权
   programs.partition-manager.enable = true;
+
+  # 压缩解压
+  programs.file-roller.enable = true;
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "vscode"
+  ];
+
+  programs.kdeconnect.enable = true;
 
   programs.thunar = {
     enable = true;
@@ -219,13 +183,6 @@
       thunar-archive-plugin
     ];
   };
-
-  # 压缩解压
-  programs.file-roller.enable = true;
-
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "vscode"
-  ];
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.variables = {

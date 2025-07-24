@@ -24,19 +24,8 @@
   programs.home-manager.enable = true;
     # backupFileExtension = "backup";
 
-  #programs.zsh = {
-  #  shellAliase = {
-  #    code = "code --enable-features=UseOZonePlatform --ozone-platform=wayland";
-  #  };
-  #};
   home.file = {
-    ".config/niri/config.kdl".source = ../dotfiles/.config/niri/config.kdl;
+    # ".config/niri/config.kdl".source = ../dotfiles/.config/niri/config.kdl;
     ".config/Code/argv.json".source = ../dotfiles/.config/Code/argv.json;
   };
-  #home.file.".config/Code/argv.json".text = ''
-  #  {
-  #    "enable-features": "UseOzonePlatform",
-  #    "ozone-platform": "wayland"
-  #  }
-  #'';
 }
