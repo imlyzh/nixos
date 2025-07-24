@@ -17,8 +17,10 @@
     { device = "/dev/disk/by-uuid/69aabb79-3f34-40b1-95ab-7460de890001";
       fsType = "btrfs";
       options = [ "subvol=@root"
-        "noatime"
         "ssd"
+        "noatime"
+        "compress=zstd"
+        "autodefrag"
       ];
     };
 
@@ -26,9 +28,10 @@
     { device = "/dev/disk/by-uuid/69aabb79-3f34-40b1-95ab-7460de890001";
       fsType = "btrfs";
       options = [ "subvol=@home"
-        "compress=zstd:1"
-        "noatime"
         "ssd"
+        "noatime"
+        "compress=zstd"
+        "autodefrag"
       ];
     };
 
@@ -36,9 +39,9 @@
     { device = "/dev/disk/by-uuid/69aabb79-3f34-40b1-95ab-7460de890001";
       fsType = "btrfs";
       options = [ "subvol=@nix"
-        "compress=zstd:1"
-        "noatime"
         "ssd"
+        "compress=zstd:3"
+        "noatime"
       ];
     };
 
