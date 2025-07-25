@@ -25,7 +25,7 @@ in {
     kitty
     ghostty
     ulauncher
-    # wofi
+    bibata-cursors
 
     fuzzel
     waybar
@@ -60,91 +60,97 @@ in {
   };
 
   programs.firefox.enable = true;
-  # --------------------------------------------------------------------
-  # SwayFX 的配置
-  # --------------------------------------------------------------------
-  # wayland.windowManager.sway = {
-  #   package = pkgs.swayfx;
-  #   extraConfig = ''
-  #     set $mod Mod4
-  #     set $term ${my-terminal}
-  #     set $menu ${my-launcher}
-  #     exec ${wallpaper-cmd}
-  #     exec waybar
-  #     corner_radius 10
-  #     blur enable
-  #     shadows enable
-  #   '';
-  # };
 
-  # programs.waybar = {
-  #   enable = true;
-  #   style = ''
-  #     * {
-  #       border: none;
-  #       font-family: "Noto Sans CJK SC", "Font Awesome 6 Free";
-  #       font-size: 16px;
-  #       min-height: 0;
-  #     }
-  #     window#waybar {
-  #       background: rgba(30, 30, 46, 0.85);
-  #       color: #cdd6f4;
-  #     }
-  #     #workspaces button.active {
-  #       background-color: #b48ead;
-  #       color: #1e1e2e;
-  #     }
-  #     #clock, #cpu, #memory, #pulseaudio, #network {
-  #       padding: 0 10px;
-  #     }
-  #   '';
-  #   settings = {
-  #     mainBar = {
-  #       layer = "top";
-  #       position = "top";
-  #       height = 35;
-  #       modules-left = ["sway/workspaces" "sway/mode"];
-  #       modules-center = ["sway/window"];
-  #       modules-right = ["pipewire" "network" "cpu" "memory" "clock"];
-  #       "clock" = { "format" = " {:%Y-%m-%d %H:%M}"; };
-  #       "cpu" = { "format" = " {usage}%"; };
-  #       "memory" = { "format" = " {}%"; };
-  #       "network" = { "format-wifi" = "  {essid}"; "format-disconnected" = "󰖪"; };
-  #       # "pulseaudio" = { "format" = "{icon} {volume}%"; "format-icons" = { "default" = ["", "", ""]; }; };
-
-  #       # 然后在 mainBar 里添加 pipewire 的配置
-  #       "pipewire" = {
-  #         "format" = "{icon} {volume}%";
-  #         "format-muted" = "󰖁 Muted"; # 静音图标
-  #         "format-icons" = ["", "", ""];
-  #       };
-  #     };
-  #   };
-  # };
-
-  programs.ghostty.enable = true;
-  # programs.waybar.enable = true;
-  systemd.user.services.swaybg = {
-    Unit = {
-      Description = "Sway Background";
-      PartOf = "graphical-session.target";
+    wayland.windowManager.hyprland = {
+      enable = true;
+      settings = {
+        "$mod" = "SUPER";
+        decoration = {
+          rounding = 10;
+          blur.enabled = true;
+          inactive_opacity = 0.9;
+          active_opacity = 0.9;
+        };
+        "exec-once" = [
+          "waybar"
+          "ghostty"
+        ];
+        "windowrulev2" = [
+          "float, class:^(ulauncher)$"
+          "center, class:^(ulauncher)$"
+          "noborder, class:^(ulauncher)$"
+          "noshadow, class:^(ulauncher)$"
+          "rounding 0, class:^(ulauncher)$"
+          "noblur, class:^(ulauncher)$"
+          "opaque, class:^(ulauncher)$"
+        ];
+        bind =
+          [
+            "$mod, F, exec, brave"
+            "$mod, RETURN, exec, ghostty"
+            "$mod, Q, killactive,"
+            "$mod, D, exec, ulauncher"
+          ]
+          ++ (
+            # workspaces
+            # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+            builtins.concatLists (builtins.genList (i:
+                let ws = i + 1;
+                in [
+                  "$mod, code:1${toString i}, workspace, ${toString ws}"
+                  "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+                ]
+              )
+              9)
+          );
+          binde = [
+            "$mod, LEFT, resizeactive, -10 0"
+            "$mod, RIGHT, resizeactive, 10 0"
+            "$mod, UP, resizeactive, 0 -10"
+            "$mod, DOWN, resizeactive, 0 10"
+          ];
+      };
     };
-    Service = {
-      ExecStart = wallpaper-cmd;
-      Restart = "on-failure";
-      RestartSec = "1";
-      TimeoutStopSec = "5";
+    home.packages = with pkgs; [
+        ulauncher
+        bibata-cursors
+        swaybg
+    ];
+    home.pointerCursor = {
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+      size = 24;
+      gtk.enable = true;
     };
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
+    home.sessionVariables = {
+      HYPRCURSOR_THEME = "Bibata-Modern-Classic";
+      HYPRCURSOR_SIZE = "24";
     };
-  };
-
-  home.file = {
-    "./.config/niri/config.kdl".source = ../dotfiles/.config/niri/config.kdl;
-    "./.config/waybar".source = ../dotfiles/.config/waybar;
-  };
-
+    home.file = {
+      "./.config/waybar".source = ../dotfiles/.config/waybar;
+      "./.config/niri/config.kdl".source = ../dotfiles/.config/niri/config.kdl;
+      # "./.config/assets".source = "${dotfiles}/.config/assets";
+    };
+    programs.ghostty = {
+      enable = true;
+      settings = {
+      };
+    };
+    systemd.user.services.swaybg = {
+      Unit = {
+        Description = "Sway Background";
+        PartOf = "graphical-session.target";
+      };
+      Service = {
+        ExecStart = "${pkgs.swaybg}/bin/swaybg -i ${config.home.homeDirectory}/.config/assets/bochi-1.jpg";
+        Restart = "on-failure";
+        RestartSec = "1";
+        TimeoutStopSec = "5";
+      };
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
   home.sessionVariables = {
     GTK_IM_MODULE = "ibus";
     QT_IM_MODULE = "ibus";
