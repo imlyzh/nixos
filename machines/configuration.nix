@@ -158,6 +158,7 @@
     wget
     curl
     git
+    zsh
 
     vscode
     code-server
@@ -167,6 +168,19 @@
     v2raya
     proxychains-ng
   ];
+
+  programs.zsh.enable = true;
+  # programs.zsh = {
+  #   enable = true;
+  #   oh-my-zsh = {
+  #     enable = true;
+  #     plugins = [ "git" "sudo" ];
+  #     theme = "robbyrussell";
+  #   };
+  #   syntaxHighlighting.highlighters = [
+  #     "main" "brackets" "pattern" "cursor" "regexp" "root" "line"
+  #   ];
+  # };
 
   # kde 磁盘管理软件，仅仅添加到 systemPackages 是用不了，需要 suid 提权
   programs.partition-manager.enable = true;

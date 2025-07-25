@@ -85,5 +85,4 @@
 #   environment.variables = {
 #     EDITOR = "nvim";
 #   };
-  programs.zsh.enable = true;
 }
