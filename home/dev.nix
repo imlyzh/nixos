@@ -13,6 +13,8 @@
     # zig
 
     qemu
+
+    lunarvim
   ];
 
   programs.git = {
