@@ -68,8 +68,11 @@
     sarasa-gothic  #更纱黑体
     source-code-pro
     hack-font
+    hack-nerd-font
     fira-code
+    fira-code-nerd-font
     jetbrains-mono
+    jetbrains-mono-nerd
   ];
 
   # --- 小狐娘在这里做了大改造哦！ ---
