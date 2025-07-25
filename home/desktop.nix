@@ -46,7 +46,7 @@ in {
     ibus
 
     firefox
-    # discord
+    discord
     spotify
     kotatogram-desktop
     transmission_4-gtk
