@@ -92,7 +92,7 @@
   programs.sway.enable = true;
   programs.niri.enable = true;
 
-  programs.waybar.enable = true; # launch on startup in the default setting (bar)
+  # programs.waybar.enable = true; # launch on startup in the default setting (bar)
   services.gnome.gnome-keyring.enable = true; # secret service
   # services.polkit-gnome.enable = true; # polkit
   security.polkit.enable = true; # polkit

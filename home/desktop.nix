@@ -115,7 +115,7 @@ in {
   # };
 
   programs.ghostty.enable = true;
-  programs.waybar.enable = true;
+  # programs.waybar.enable = true;
   systemd.user.services.swaybg = {
     Unit = {
       Description = "Sway Background";
