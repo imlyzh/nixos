@@ -15,6 +15,9 @@
     v2raya
     podman
     zsh
+
+    clang
+    zig
   ];
 
   programs.direnv = {

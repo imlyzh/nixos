@@ -357,5 +357,5 @@ binds {
 }
 
 output "Virtual-1" {
-    scale 1.13
+    scale 1
 }

@@ -10,7 +10,6 @@
     openjdk
 
     rustup
-    # zig
 
     qemu
 
