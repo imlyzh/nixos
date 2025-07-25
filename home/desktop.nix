@@ -45,8 +45,12 @@ in {
     #fcitx5
     ibus
 
-    spotify
     firefox
+    discord
+    spotify
+    kotatogram-desktop
+    transmission_4-gtk
+
     # vscode
     file-roller
   ];
