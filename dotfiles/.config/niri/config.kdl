@@ -63,7 +63,7 @@ input {
 }
 
 spawn-at-startup "waybar"
-spawn-at-startup "ghostty"
+spawn-at-startup "kitty"
 
 layout {
     focus-ring {
@@ -73,24 +73,30 @@ layout {
 
 window-rule {
     geometry-corner-radius 10
-    opacity 0.9
-    border {
-        off
-    }
-}
-
-window-rule {
-    match app-id="ulauncher"
-    open-floating true
-    geometry-corner-radius 0
     opacity 1.0
     border {
         off
     }
-    shadow {
-        off
+    gaps {
+        left 10
+        right 10
+        top 0
+        bottom 0
     }
 }
+
+// window-rule {
+//     match app-id="ulauncher"
+//     open-floating true
+//     geometry-corner-radius 0
+//     opacity 1.0
+//     border {
+//         off
+//     }
+//     shadow {
+//         off
+//     }
+// }
 
 binds {
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
