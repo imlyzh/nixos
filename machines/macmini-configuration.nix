@@ -82,6 +82,7 @@
     source-code-pro
     hack-font
     fira-code
+    nerd-fonts.fira-code
     jetbrains-mono
   ];
 
