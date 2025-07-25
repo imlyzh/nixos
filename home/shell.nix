@@ -10,7 +10,6 @@
     tlrc
     tree
     git
-    neovim
     emacs
     nushell
     ripgrep
