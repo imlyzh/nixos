@@ -102,6 +102,20 @@
       };
 
       homeConfigurations = {
+        "linux-desktop" = home-manager.lib.homeManagerConfiguration rec {
+          extraSpecialArgs = { inherit inputs; };
+          modules = [
+            ./home/home.nix
+            ./home/shell.nix
+            ./home/dev.nix
+            ./home/desktop.nix
+            ({ pkgs, ... }: {
+            nixpkgs.overlays = [ rust-overlay.overlays.default ];
+            environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];
+            })
+            ];
+        };
+
         "linux" = home-manager.lib.homeManagerConfiguration rec {
           extraSpecialArgs = { inherit inputs; };
           modules = [

@@ -2,7 +2,7 @@
     min-height: 0;
     min-width: 0;
     font-family: Lexend, "JetBrainsMono NFP";
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
 }
 
@@ -16,9 +16,9 @@ window#waybar {
 }
 
 #workspaces button {
-    padding: 0.3rem 0.6rem;
-    margin: 0.4rem 0.25rem;
-    border-radius: 6px;
+    padding: 0.2rem 0.4rem;
+    margin: 0.2rem 0.15rem;
+    border-radius: 4px;
     /* background-color: #181825; */
     background-color: #1e1e2e;
     color: #cdd6f4;
@@ -50,9 +50,9 @@ window#waybar {
 #memory,
 #window,
 #mpris {
-    padding: 0.3rem 0.6rem;
-    margin: 0.4rem 0.25rem;
-    border-radius: 6px;
+    padding: 0.2rem 0.4rem;
+    margin: 0.2rem 0.15rem;
+    border-radius: 4px;
     /* background-color: #181825; */
     background-color: #1e1e2e;
 }
