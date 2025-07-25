@@ -68,7 +68,7 @@
     sarasa-gothic  #更纱黑体
     source-code-pro
     hack-font
-    # fira-code
+    fira-code
     nerd-font.fira-code
     jetbrains-mono
   ];

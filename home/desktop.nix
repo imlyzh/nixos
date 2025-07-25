@@ -54,8 +54,8 @@ in {
   programs.kitty = {
     enable = true;
     font = {
-      name = "FiraCode Nerd Font"; # <--- 在这里指定字体的名字！
-      size = 12; # 字体大小可以自己调整哦
+      name = "FiraCode Nerd Font";
+      size = 14;
     };
   };
 
