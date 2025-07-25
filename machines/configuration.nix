@@ -62,15 +62,16 @@
   };
 
   fonts.packages = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      sarasa-gothic  #更纱黑体
-      source-code-pro
-      hack-font
-      fira-code
-      jetbrains-mono
-    ];
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    sarasa-gothic  #更纱黑体
+    source-code-pro
+    hack-font
+    fira-code
+    fira-code-nerdfont
+    jetbrains-mono
+  ];
 
   # --- 小狐娘在这里做了大改造哦！ ---
   # 1. 我们不再需要 Xorg 服务和 GDM 啦，Sway 会自己处理好一切
