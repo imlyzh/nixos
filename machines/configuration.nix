@@ -137,6 +137,7 @@
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];
     uid = 1001;
+    shell = pkgs.zsh;
     hashedPassword = "$6$3EPkfBlo6DmngTcl$fxPkkvpjjSyAniQoZ2roAGCvgKXG51e824SDEr3FtMXX.E4h3qIxsNMLI6d0KZeAvLQrtgUkbu4m1dLeYJ11H.";
     packages = with pkgs; [];
   };
