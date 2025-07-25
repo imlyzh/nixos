@@ -66,6 +66,7 @@ spawn-at-startup "waybar"
 spawn-at-startup "kitty"
 
 layout {
+    gaps 2
     focus-ring {
         off
     }
@@ -76,12 +77,6 @@ window-rule {
     opacity 1.0
     border {
         off
-    }
-    gaps {
-        left 10
-        right 10
-        top 0
-        bottom 0
     }
 }
 
@@ -114,8 +109,8 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
-    // Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
-    Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+    Mod+T hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
+    // Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
     // Mod+D hotkey-overlay-title="Run an Application: wofi" { spawn "wofi --show drun"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }

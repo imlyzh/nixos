@@ -92,6 +92,7 @@
 
   programs.sway.enable = true;
   programs.niri.enable = true;
+  programs.hyprland.enable = true;
 
   # programs.waybar.enable = true; # launch on startup in the default setting (bar)
   services.gnome.gnome-keyring.enable = true; # secret service
