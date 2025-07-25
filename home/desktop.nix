@@ -111,11 +111,6 @@ in {
           ];
       };
     };
-    home.packages = with pkgs; [
-        ulauncher
-        bibata-cursors
-        swaybg
-    ];
     home.pointerCursor = {
       name = "Bibata-Modern-Classic";
       package = pkgs.bibata-cursors;
