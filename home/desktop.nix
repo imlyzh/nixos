@@ -7,7 +7,7 @@ let
   my-launcher = "fuzzel";
 
   # 定义壁纸路径和命令，这样两边可以共用
-  wallpaper-path = "/home/lyzh/Pictures/00181.png"; # <-- ★★★ 把这里改成你的壁纸的绝对路径！
+  wallpaper-path = "${config.home.homeDirectory}/.config/assets/00181.png"; # <-- ★★★ 把这里改成你的壁纸的绝对路径！
   wallpaper-cmd = "${pkgs.swaybg}/bin/swaybg -i ${wallpaper-path}";# -m fill";
 in {
   # --------------------------------------------------------------------
@@ -124,7 +124,7 @@ in {
     home.file = {
       "./.config/waybar".source = ../dotfiles/.config/waybar;
       "./.config/niri/config.kdl".source = ../dotfiles/.config/niri/config.kdl;
-      # "./.config/assets".source = "${dotfiles}/.config/assets";
+      "./.config/assets".source = ../.config/assets;
     };
     programs.ghostty = {
       enable = true;
@@ -137,7 +137,7 @@ in {
         PartOf = "graphical-session.target";
       };
       Service = {
-        ExecStart = "${pkgs.swaybg}/bin/swaybg -i ${config.home.homeDirectory}/.config/assets/bochi-1.jpg";
+        ExecStart = "${pkgs.swaybg}/bin/swaybg -i ${config.home.homeDirectory}/.config/assets/00181.png";
         Restart = "on-failure";
         RestartSec = "1";
         TimeoutStopSec = "5";

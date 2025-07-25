@@ -7,8 +7,7 @@
   "gtk-layer-shell": true,
   "passthrough": false,
   "fixed-center": true,
-  "modules-left": ["niri/workspaces", "niri/mode"],
-  "modules-center": ["niri/window"],
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["mpris"],
   "modules-right": [
     "cpu",
@@ -20,14 +19,14 @@
     "custom/notification",
     "custom/power",
   ],
-  "niri/workspaces": {
+  "hyprland/workspaces": {
     "on-click": "activate",
     "format": "{id}",
     "all-outputs": true,
     "disable-scroll": false,
     "active-only": false,
   },
-  "niri/window": {
+  "hyprland/window": {
     "format": "{title}",
   },
   "tray": {
