@@ -123,8 +123,8 @@ in {
     };
     home.file = {
       "./.config/waybar".source = ../dotfiles/.config/waybar;
+      "./.config/assets".source = ../dotfiles/.config/assets;
       "./.config/niri/config.kdl".source = ../dotfiles/.config/niri/config.kdl;
-      "./.config/assets".source = ../.config/assets;
     };
     programs.ghostty = {
       enable = true;
