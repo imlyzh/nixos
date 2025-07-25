@@ -33,6 +33,7 @@
     firefox
     discord
     spotify
+    telegram-desktop
     transmission_4-gtk
     mumble
 
