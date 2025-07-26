@@ -17,6 +17,9 @@
 
     clang
     zig
+
+    clash-rs
+    clashtui
   ];
 
   programs.direnv = {

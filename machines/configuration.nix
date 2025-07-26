@@ -130,6 +130,7 @@
 
   services.tailscale.enable = true;
   services.v2raya.enable = true;
+  services.mihomo.webui = pkgs.metacubexd;
 
   services.gvfs.enable = true; # 磁盘挂载
 

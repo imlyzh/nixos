@@ -21,9 +21,9 @@
     dust
     tmux
     coreutils
-    clash-rs
-    clashtui
+    mihomo
   ];
+
   programs.zsh = {
     enable = true;
     oh-my-zsh = {

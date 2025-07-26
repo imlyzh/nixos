@@ -56,6 +56,11 @@ in {
     file-roller
   ];
 
+  programs.clash-verge = {
+    enable = true;
+    autoStart = true;
+  };
+
   programs.kitty = {
     enable = true;
     font = {

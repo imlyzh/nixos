@@ -41,7 +41,6 @@
     protonplus
 
     v2raya
-    mihomo
 
     # (rosettaPkgs.wine64.overrideAttrs (old: {
       # meta.platforms = old.meta.platforms ++ ["x86_64-darwin"];
