@@ -51,6 +51,7 @@ in {
     kotatogram-desktop
     transmission_4-gtk
 
+    clash-verge-rev
     # vscode
     file-roller
   ];

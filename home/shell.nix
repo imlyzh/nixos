@@ -21,6 +21,8 @@
     dust
     tmux
     coreutils
+    clash-rs
+    clashtui
   ];
   programs.zsh = {
     enable = true;
