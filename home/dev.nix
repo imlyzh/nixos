@@ -35,8 +35,8 @@
     source = pkgs.fetchFromGitHub {
       owner = "imlyzh";
       repo = "lazyvim-starter";
-      rev = "803bc181d7c0d6d5eeba9274d9be49b287294d99";
-      sha256 = "QrpnlDD4r1X4C8PqBhQ+S3ar5C+qDrU1Jm/lPqyMIFM=";
+      rev = "48688d8db7665d6555c64b8c64b1f4e678d53ab8";
+      sha256 = "sha256-mz+OmaaMF+infojTJ6CP6OUVCdThg0Dnm4p6bO5mPiA=";
     };
     recursive = true;
   };
