@@ -54,6 +54,21 @@ in {
     clash-verge-rev
     # vscode
     file-roller
+
+    podman-desktop
+
+    obsidian
+    logseq
+    syncplay
+    teamspeak3
+    # teamspeak_client
+    # teamspeak_server
+    # zoom-us
+    qbittorrent-enhanced
+    localsend
+    # steam
+
+    anki
   ];
 
   programs.kitty = {

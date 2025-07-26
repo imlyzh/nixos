@@ -12,7 +12,6 @@
   home.packages = with pkgs; [
     tailscale
     v2raya
-    podman
     zsh
 
     clang
@@ -20,6 +19,8 @@
 
     clash-rs
     clashtui
+
+    # anki-sync-server
   ];
 
   programs.direnv = {

@@ -29,6 +29,19 @@
     iterm2
     zed-editor
     obsidian
+    logseq
+    syncplay
+    iina
+    teamspeak3
+    # teamspeak_client
+    # teamspeak_server
+    qbittorrent-enhanced
+    localsend
+    disk-inventory-x
+    appcleaner
+    keycastr
+    # ollama
+    # podman-desktop
 
     firefox
     discord
