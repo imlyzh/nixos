@@ -21,7 +21,9 @@
     dust
     tmux
     coreutils
+
     mihomo
+    proxychains-ng
   ];
 
   programs.zsh = {

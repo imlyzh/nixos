@@ -134,6 +134,22 @@
 
   services.gvfs.enable = true; # 磁盘挂载
 
+
+  services.tlp.enable = true;
+  services.tlp.settings = {
+    # AC
+    CPU_SCALING_GOVERNOR_ON_AC = "performance";
+    CPU_BOOST_ON_AC = 1;
+    DISK_APM_LEVEL_ON_AC = "254 254";
+    # BAT
+    CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+    CPU_BOOST_ON_BAT = 0;
+    DISK_APM_LEVEL_ON_BAT = "128 128";
+    WIFI_PWR_ON_BAT = "on";
+    SOUND_POWER_SAVE_ON_BAT = 1;
+    USB_AUTOSUSPEND = 1;
+  };
+
   users.users.lyzh = {
     isNormalUser = true;
     extraGroups = [ "networkmanager" "wheel" ];
@@ -155,6 +171,8 @@
   environment.systemPackages = with pkgs; [
     btrfs-progs
     greetd.tuigreet
+    powertop
+
     vim
     wget
     curl
@@ -167,7 +185,6 @@
     tailscale
     clash-verge-rev
     v2raya
-    proxychains-ng
   ];
 
   programs.clash-verge = {
