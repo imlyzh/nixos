@@ -53,7 +53,7 @@
               # home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.lyzh = {
-                imports = [ ./home/home.nix ./home/shell.nix ./home/dev.nix ./home/desktop.nix];
+                imports = [ ./home/home.nix ./home/shell.nix ./home/dev.nix ./home/docker.nix ./home/desktop.nix];
               };
             }
             ({ pkgs, ... }: {
@@ -108,6 +108,7 @@
             ./home/home.nix
             ./home/shell.nix
             ./home/dev.nix
+            ./home/docker.nix
             ./home/desktop.nix
             ({ pkgs, ... }: {
             nixpkgs.overlays = [ rust-overlay.overlays.default ];
@@ -122,6 +123,7 @@
             ./home/home.nix
             ./home/shell.nix
             ./home/dev.nix
+            ./home/docker.nix
             ({ pkgs, ... }: {
             nixpkgs.overlays = [ rust-overlay.overlays.default ];
             environment.systemPackages = [ pkgs.rust-bin.stable.latest.default ];

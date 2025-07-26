@@ -20,7 +20,7 @@
     clash-rs
     clashtui
 
-    # anki-sync-server
+    anki-sync-server
   ];
 
   programs.direnv = {
