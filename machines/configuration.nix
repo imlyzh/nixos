@@ -46,19 +46,25 @@
 
   i18n.inputMethod = {
     enable = true;
-    # type = "fcitx5";
-    # fcitx.engines = with pkgs.fcitx-engines; [ rime ];
-    # fcitx5.enableRimeData= true;
-    # fcitx5.addons = with pkgs; [
-    #   fcitx5-rime
-    #   # fcitx5-chinese-addons
-    #   # fcitx5-gtk
-    # ];
-    type = "ibus";
-    ibus.engines = with pkgs.ibus-engines; [
-      libpinyin
-      rime
+    type = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      # 核心：RIME 输入法引擎
+      fcitx5-rime
+      fcitx5-chinese-addons
+      # 让 GTK 和 Qt 程序能使用 Fcitx5
+      fcitx5-gtk
+      # fcitx5-qt
+      # 可选：一个好看的主题，让输入法更漂亮
+      # (比如 fcitx5-nord, fcitx5-catppuccin 等)
+      # (pkgs.catppuccin-fcitx5.override { variant = "mocha"; })
     ];
+  };
+  environment.sessionVariables = {
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx"; # 兼容 XWayland 应用
+    INPUT_METHOD = "fcitx";
+    SDL_IM_MODULE = "fcitx"; # 兼容 SDL 应用 (比如一些游戏)
   };
 
   fonts.packages = with pkgs; [
@@ -222,12 +228,11 @@
     CC = "clang";
     CXX = "clang++";
 
-    # 输入法环境变量，非常重要！
-    GTK_IM_MODULE = "ibus";
-    QT_IM_MODULE = "ibus";
-    XMODIFIERS = "@im=ibus";
-    INPUT_METHOD = "ibus";
-    SDL_IM_MODULE = "ibus";
+    # GTK_IM_MODULE = "ibus";
+    # QT_IM_MODULE = "ibus";
+    # XMODIFIERS = "@im=ibus";
+    # INPUT_METHOD = "ibus";
+    # SDL_IM_MODULE = "ibus";
   };
 
   programs.nix-ld.enable = true;
