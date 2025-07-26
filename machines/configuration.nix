@@ -170,6 +170,11 @@
     proxychains-ng
   ];
 
+  programs.clash-verge = {
+    enable = true;
+    autoStart = true;
+  };
+
   programs.zsh.enable = true;
 
   # kde 磁盘管理软件，仅仅添加到 systemPackages 是用不了，需要 suid 提权
