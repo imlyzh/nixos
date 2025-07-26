@@ -27,21 +27,22 @@
     rectangle         # 开源窗口管理
 
     iterm2
-    zed-editor
-    obsidian
-    logseq
     syncplay
     iina
-    teamspeak3
-    # teamspeak_client
-    # teamspeak_server
     qbittorrent-enhanced
     localsend
     disk-inventory-x
     appcleaner
     keycastr
-    # ollama
-    # podman-desktop
+    ollama
+
+    zed-editor
+
+    obsidian
+    # logseq
+    # teamspeak3
+    # teamspeak_client
+    # teamspeak_server
 
     firefox
     discord
@@ -54,22 +55,6 @@
     protonplus
 
     v2raya
-
-    # (rosettaPkgs.wine64.overrideAttrs (old: {
-      # meta.platforms = old.meta.platforms ++ ["x86_64-darwin"];
-    # }))
-
-    # (rosettaPkgs.steam.overrideAttrs (old: {
-    #   meta.platforms = old.meta.platforms ++ ["x86_64-darwin"];
-    # }))
   ];
-
-  # home.sessionVariables = {
-  #   http_proxy = "";
-  #   https_proxy = "";
-  #   all_proxy = "";
-  #   NO_PROXY = "localhost,127.0.0.1, ::1";
-  # };
-
   programs.home-manager.enable = true;
 }
