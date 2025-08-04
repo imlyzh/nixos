@@ -196,6 +196,10 @@
     fcitx5-layouts
   ];
 
+  nixpkgs.config.allowUnfree = true;
+
+  programs.steam.enable = true;
+
   programs.clash-verge = {
     enable = true;
     autoStart = true;
