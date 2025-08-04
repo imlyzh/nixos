@@ -1,0 +1,5 @@
+[font]
+family = "FiraCode Nerd Font"
+size = 14
+# Enable font ligatures, a key feature of Fira Code.
+features = ["liga", "calt"]

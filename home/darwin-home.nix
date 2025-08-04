@@ -57,4 +57,8 @@
     v2raya
   ];
   programs.home-manager.enable = true;
+
+  home.file = {
+    ".config/ghostty/config.toml".source = ../dotfiles/.config/ghostty/config.toml;
+  };
 }
