@@ -48,15 +48,12 @@
     enable = true;
     type = "fcitx5";
     fcitx5.addons = with pkgs; [
-      # 核心：RIME 输入法引擎
       fcitx5-rime
       fcitx5-chinese-addons
-      # 让 GTK 和 Qt 程序能使用 Fcitx5
       fcitx5-gtk
-      # fcitx5-qt
-      # 可选：一个好看的主题，让输入法更漂亮
-      # (比如 fcitx5-nord, fcitx5-catppuccin 等)
-      # (pkgs.catppuccin-fcitx5.override { variant = "mocha"; })
+
+      fcitx5-configtool
+      fcitx5-layouts
     ];
   };
 
@@ -71,19 +68,19 @@
   # };
 
   # 启用 KDE Plasma
-  services.xserver.enable = true; # optional
+  services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  # environment.sessionVariables = {
-  #   GTK_IM_MODULE = "fcitx";
-  #   QT_IM_MODULE = "fcitx";
-  #   XMODIFIERS = "@im=fcitx"; # 兼容 XWayland 应用
-  #   INPUT_METHOD = "fcitx";
-  #   SDL_IM_MODULE = "fcitx"; # 兼容 SDL 应用 (比如一些游戏)
-  # };
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx"; # 兼容 XWayland 应用
+    INPUT_METHOD = "fcitx";
+    SDL_IM_MODULE = "fcitx"; # 兼容 SDL 应用 (比如一些游戏)
+  };
 
   fonts.packages = with pkgs; [
     noto-fonts
@@ -97,12 +94,12 @@
     jetbrains-mono
   ];
 
-  # services.xserver.enable = true;
-  # services.displayManager.gdm.enable = true;
-
   programs.sway.enable = true;
   programs.niri.enable = true;
   programs.hyprland.enable = true;
+
+  # services.xserver.enable = true;
+  # services.displayManager.gdm.enable = true;
 
   # programs.waybar.enable = true; # launch on startup in the default setting (bar)
   # services.gnome.gnome-keyring.enable = true; # secret service
@@ -195,6 +192,8 @@
     tailscale
     clash-verge-rev
     v2raya
+
+    fcitx5-layouts
   ];
 
   programs.clash-verge = {
