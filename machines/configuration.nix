@@ -59,13 +59,28 @@
       # (pkgs.catppuccin-fcitx5.override { variant = "mocha"; })
     ];
   };
-  environment.sessionVariables = {
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx"; # 兼容 XWayland 应用
-    INPUT_METHOD = "fcitx";
-    SDL_IM_MODULE = "fcitx"; # 兼容 SDL 应用 (比如一些游戏)
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --remember --remember-session --cmd ${pkgs.plasma5.startplasma-wayland}/bin/startplasma-wayland";
+        user = "greetd";
+      };
+    };
   };
+
+  # 启用 KDE Plasma
+  services.xserver.desktopManager.plasma5.enable = true;
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # environment.sessionVariables = {
+  #   GTK_IM_MODULE = "fcitx";
+  #   QT_IM_MODULE = "fcitx";
+  #   XMODIFIERS = "@im=fcitx"; # 兼容 XWayland 应用
+  #   INPUT_METHOD = "fcitx";
+  #   SDL_IM_MODULE = "fcitx"; # 兼容 SDL 应用 (比如一些游戏)
+  # };
 
   fonts.packages = with pkgs; [
     noto-fonts
@@ -79,22 +94,8 @@
     jetbrains-mono
   ];
 
-  # --- 小狐娘在这里做了大改造哦！ ---
-  # 1. 我们不再需要 Xorg 服务和 GDM 啦，Sway 会自己处理好一切
-  # services.xserver.enable = true; # 注释掉
-  # services.displayManager.gdm.enable = true; # 注释掉
-  # programs.hyprland.enable = true; # 把 Hyprland 也收起来
-
-  # 2. 换上轻巧漂亮的 greetd 登录管理器！
-  services.greetd = {
-    enable = true;
-    # package = pkgs.greetd.tuigreet;
-    settings = {
-      default_session.command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --remember --remember-session --cmd niri";
-    };
-  };
-
-  # 3. 这是 Sway 的魔法配置区！(当前启用)
+  # services.xserver.enable = true;
+  # services.displayManager.gdm.enable = true;
 
   programs.sway.enable = true;
   programs.niri.enable = true;
