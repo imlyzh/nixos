@@ -71,7 +71,10 @@
   };
 
   # 启用 KDE Plasma
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.enable = true; # optional
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   # environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # environment.sessionVariables = {
@@ -102,38 +105,38 @@
   programs.hyprland.enable = true;
 
   # programs.waybar.enable = true; # launch on startup in the default setting (bar)
-  services.gnome.gnome-keyring.enable = true; # secret service
+  # services.gnome.gnome-keyring.enable = true; # secret service
   # services.polkit-gnome.enable = true; # polkit
-  security.polkit.enable = true; # polkit
-  security.soteria.enable = true; # polkit agent
+  # security.polkit.enable = true; # polkit
+  # security.soteria.enable = true; # polkit agent
 
   # 5. Wayland 世界的“胶水”程序，非常重要！
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
+  # xdg.portal = {
+    # enable = true;
+    # extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
     # 如果发现截图或文件选择有问题，可以把下面这个也打开
     # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config.common.default = "*";
-  };
+    # config.common.default = "*";
+  # };
 
   # services.xserver.xkb.options = "caps:escape";
 
   # sound.enable = true;
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
+  # services.pulseaudio.enable = false;
+  # security.rtkit.enable = true;
 
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    jack.enable = true;
-  };
+  # services.pipewire = {
+    # enable = true;
+    # pulse.enable = true;
+    # alsa.enable = true;
+    # alsa.support32Bit = true;
+    # jack.enable = true;
+  # };
   # 色彩配置服务
-  services.colord.enable = true;
+  # services.colord.enable = true;
 
   # 地理位置服务
-  services.geoclue2.enable = true;
+  # services.geoclue2.enable = true;
 
   services.tailscale.enable = true;
   services.v2raya.enable = true;
