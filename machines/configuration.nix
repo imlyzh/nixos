@@ -60,15 +60,15 @@
     ];
   };
 
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --remember --remember-session --cmd ${pkgs.plasma5.startplasma-wayland}/bin/startplasma-wayland";
-        user = "greetd";
-      };
-    };
-  };
+  # services.greetd = {
+  #   enable = true;
+  #   settings = {
+  #     default_session = {
+  #       command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --asterisks --remember --remember-session --cmd ${pkgs.plasma5.startplasma-wayland}/bin/startplasma-wayland";
+  #       user = "greetd";
+  #     };
+  #   };
+  # };
 
   # 启用 KDE Plasma
   services.xserver.enable = true; # optional
