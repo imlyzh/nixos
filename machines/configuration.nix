@@ -53,7 +53,6 @@
       fcitx5-gtk
 
       fcitx5-configtool
-      fcitx5-layouts
     ];
   };
 
@@ -192,8 +191,6 @@
     tailscale
     clash-verge-rev
     v2raya
-
-    fcitx5-layouts
   ];
 
   nixpkgs.config.allowUnfree = true;
