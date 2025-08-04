@@ -11,7 +11,7 @@
 
   home-manager = {
     useUserPackages = true;
-    sharedModules = [../home/home.nix ../home/dev.nix ../home/shell.nix ../home/desktop.nix];
+    sharedModules = [../home/home.nix ../home/dev.nix ../home/shell.nix ../home/desktop_apps.nix];
     users.lyzh = {};
   };
 

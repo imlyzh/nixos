@@ -22,8 +22,6 @@ in {
     niri
     xwayland-satellite
     # Hyprland 的朋友们很多和 Sway 是通用的！
-    kitty
-    ghostty
     ulauncher
     bibata-cursors
 
@@ -41,52 +39,7 @@ in {
     slurp
     wl-clipboard
     pavucontrol
-
-    #fcitx5
-    ibus
-
-    firefox
-    discord
-    spotify
-    kotatogram-desktop
-    transmission_4-gtk
-
-    clash-verge-rev
-    # vscode
-    file-roller
-
-    #podman-desktop
-
-    firefox
-    discord
-    spotify
-    telegram-desktop
-    transmission_4-gtk
-    mumble
-
-    obsidian
-    logseq
-    syncplay
-    teamspeak3
-    # teamspeak_client
-    # teamspeak_server
-    # zoom-us
-    qbittorrent-enhanced
-    localsend
-    # steam
-
-    anki
   ];
-
-  programs.kitty = {
-    enable = true;
-    font = {
-      name = "FiraCode Nerd Font";
-      size = 12;
-    };
-  };
-
-  programs.firefox.enable = true;
 
     wayland.windowManager.hyprland = {
       enable = true;
@@ -152,11 +105,6 @@ in {
       "./.config/waybar".source = ../dotfiles/.config/waybar;
       "./.config/assets".source = ../dotfiles/.config/assets;
       "./.config/niri/config.kdl".source = ../dotfiles/.config/niri/config.kdl;
-    };
-    programs.ghostty = {
-      enable = true;
-      settings = {
-      };
     };
     systemd.user.services.swaybg = {
       Unit = {
