@@ -142,7 +142,7 @@
   services.gvfs.enable = true; # 磁盘挂载
 
 
-  services.tlp.enable = true;
+  # services.tlp.enable = true;
   services.tlp.settings = {
     # AC
     CPU_SCALING_GOVERNOR_ON_AC = "performance";
