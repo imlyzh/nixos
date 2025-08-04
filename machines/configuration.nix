@@ -73,7 +73,7 @@
   # 启用 KDE Plasma
   services.xserver.desktopManager.plasma5.enable = true;
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  # environment.sessionVariables.NIXOS_OZONE_WL = "1";
   # environment.sessionVariables = {
   #   GTK_IM_MODULE = "fcitx";
   #   QT_IM_MODULE = "fcitx";
