@@ -28,6 +28,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelModules = ["tun"];
 
   time.timeZone = "Asia/Shanghai";
 
@@ -201,6 +202,8 @@
     enable = true;
     autoStart = true;
   };
+
+
 
   programs.zsh.enable = true;
 
