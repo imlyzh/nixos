@@ -29,7 +29,8 @@
       options = [ "subvol=@home"
         "ssd"
         "noatime"
-        "compress=zstd:5"
+        "compress=none"
+        "autodefrag"
       ];
     };
 
@@ -40,7 +41,7 @@
         "ssd"
         "noatime"
         "nodiscard"
-        "compress-force=zstd:5"
+        "compress=zstd:1"
       ];
     };
 
