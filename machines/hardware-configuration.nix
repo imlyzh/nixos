@@ -19,7 +19,6 @@
       options = [ "subvol=@root"
         "ssd"
         "noatime"
-        "discard=async"
         "compress=zstd:3"
       ];
     };
@@ -30,7 +29,6 @@
       options = [ "subvol=@home"
         "ssd"
         "noatime"
-        "discard=async"
         "compress=zstd:5"
       ];
     };
@@ -41,7 +39,7 @@
       options = [ "subvol=@nix"
         "ssd"
         "noatime"
-        "discard=async"
+        "nodiscard"
         "compress-force=zstd:5"
       ];
     };
