@@ -99,7 +99,7 @@
   # programs.hyprland.enable = true;
 
   services.smartd.enable = true;
-  services.fstrim.enable = true;
+  # services.fstrim.enable = true;
 
   # services.xserver.enable = true;
   # services.displayManager.gdm.enable = true;
