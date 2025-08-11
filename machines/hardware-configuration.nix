@@ -31,7 +31,7 @@
         "ssd"
         "noatime"
         "discard=async"
-        "compress=none"
+        "compress=zstd:1"
         "autodefrag"
       ];
     };
@@ -43,7 +43,7 @@
         "ssd"
         "noatime"
         "discard=async"
-        "compress=zstd:1"
+        "compress=zstd:5"
       ];
     };
 
