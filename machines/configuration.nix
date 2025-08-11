@@ -94,9 +94,16 @@
     jetbrains-mono
   ];
 
-  programs.sway.enable = true;
-  programs.niri.enable = true;
-  programs.hyprland.enable = true;
+  # programs.sway.enable = true;
+  # programs.niri.enable = true;
+  # programs.hyprland.enable = true;
+
+  services.btrfs.autoScrub = {
+    emable = true;
+    interval = "weekly";
+    fileSystems = [ "/" ];
+  };
+  services.smartd.enable = true;
 
   # services.xserver.enable = true;
   # services.displayManager.gdm.enable = true;
